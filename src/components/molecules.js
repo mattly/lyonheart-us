@@ -5,6 +5,7 @@ export const font = {
     },
     size: {
         sm1: "0.75rem",
+        md:  "1rem",
         lg4: "2.25rem",
     }
 }

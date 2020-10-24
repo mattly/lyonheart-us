@@ -6,22 +6,16 @@ import { spacing, type, breakingWide } from './molecules'
 const Aside = styled.aside({
     marginBottom: spacing.md,
     fontFamily: type.font.family.sans,
-    fontSize: type.font.family.sm1,
+    fontSize: type.font.size.sm1,
     lineHeight: type.leading.aside,
 
     [breakingWide]: {
-        marginLeft: 0,
         paddingTop: '6px',
+        marginBottom: '-100%',
     },
 
     '& > *:first-child': {
         marginTop: 0,
-    },
-
-    '&:last-child': {
-        [breakingWide]: {
-            marginBottom: '-100%',
-        }
     },
 })
 Aside.propTypes = {

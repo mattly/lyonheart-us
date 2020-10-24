@@ -1,3 +1,6 @@
+const plugin = (resolve, options) => ({ resolve, options })
+const fileSource = (name, path) => plugin(`gatsby-source-filesystem`, { name, path: `${__dirname}/src${path}` })
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -6,15 +9,17 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
+    fileSource(`articles`, `/articles`),
+    fileSource(`talks`, `/content/talks`),
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    plugin(`gatsby-plugin-mdx`, {
+      gatsbyRemarkPlugins: [
+        `gatsby-remark-images`,
+      ]
+    }),
+    `gatsby-plugin-emotion`,
+    `gatsby-remark-images`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -24,7 +29,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        // icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

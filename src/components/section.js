@@ -16,9 +16,10 @@ const Section = styled.section(
       marginTop: 0,
       marginBottom: 0,
     },
+
+    '.hasAsides &': asideContainer,
   },
   ({ articleLead, hasAsides }) => {
-      console.log('asides?' , hasAsides)
     const leadSection = articleLead && {
       marginTop: spacing.md,
       marginBottom: spacing.md,
