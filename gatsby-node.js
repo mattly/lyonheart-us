@@ -31,15 +31,41 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 exports.createResolvers = ({ createResolvers }) => {
     const resolvers = {
         Mdx: {
+            next: {
+                type: 'Mdx',
+                resolve: (source, args, context) => {
+                    const sourceParent = context.nodeModel.getNodeById({id: source.parent})
+                    return context.nodeModel.getAllNodes({ type: 'Mdx' })
+                        .filter(node => {
+                            const parent = context.nodeModel.getNodeById({ id: node.parent })
+                            return parent.sourceInstanceName == sourceParent.sourceInstanceName
+                        }).sort(
+                            (a, b) => Date.parse(a.frontmatter.date) - Date.parse(b.frontmatter.date)
+                        ).find(other => other.frontmatter.date > source.frontmatter.date)
+                }
+            },
+            prev: {
+                type: 'Mdx',
+                resolve: (source, args, context) => {
+                    const sourceParent = context.nodeModel.getNodeById({id: source.parent})
+                    return context.nodeModel.getAllNodes({ type: 'Mdx' })
+                        .filter(node => {
+                            const parent = context.nodeModel.getNodeById({ id: node.parent })
+                            return parent.sourceInstanceName == sourceParent.sourceInstanceName
+                        }).sort(
+                            (a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date)
+                        ).find(other => other.frontmatter.date < source.frontmatter.date)
+                }
+            },
             images: {
                 type: ['ImageSharp'],
                 args: { pathMatching: `String` },
                 resolve: (source, args, context, info) => {
                     const sourceParent = context.nodeModel.getNodeById({ id: source.parent })
+                    if (sourceParent.relativeDirectory == "") { return [] }
                     return context.nodeModel.getAllNodes({ type: 'ImageSharp' })
                         .filter(image => {
                             const thisParent = context.nodeModel.getNodeById({ id: image.parent })
-                            if (thisParent.relativeDirectory == "") { return false }
                             const matchesParent = thisParent.relativePath.startsWith(sourceParent.relativeDirectory)
                             let matchesArg = true
                             if (matchesParent && args.pathMatching) {

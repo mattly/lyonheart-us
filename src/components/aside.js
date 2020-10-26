@@ -7,7 +7,7 @@ const Aside = styled.aside({
     marginBottom: spacing.md,
     fontFamily: type.font.family.sans,
     fontSize: type.font.size.sm1,
-    lineHeight: type.leading.aside,
+    lineHeight: type.leading.tight,
 
     [breakingWide]: {
         paddingTop: '6px',
