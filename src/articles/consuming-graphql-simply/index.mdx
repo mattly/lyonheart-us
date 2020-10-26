@@ -1,0 +1,42 @@
+---
+title:      Consuming GraphQL Simply
+subtitle:   Get Started Without a Consumer Library
+date:       2018-03-12
+banner:     ./banner.jpg
+---
+
+<HeaderBanner {...props.frontmatter} />
+<Section>
+
+I've recently found myself once again building an API gateway service --- a server which provides to consumers a cohesive, unified interface to a suite of specialized backend concerns. The first official client is a mobile app, and early in the project we decided [GraphQL][] seemed an ideal interface with the phone. No one on our team had practical experience with it, so we decided to make GraphQL an _eventual_ ideal.
+
+[GraphQL]: https://graphql.org/
+
+GraphQL provides a number of benefits to a service like the one I'm building. It forces you to think about your data entities and their relationships _up front_. It allows the API consumer expressive flexibility in deciding what it wants, without worrying overmuch about which resources are where.
+
+The [GraphQL schema providing library I'm using in the server][Lacinia] provides tools to map nodes in the graph to _resolvers_ which are responsible for getting what's needed when it's needed without complication. I recently started migrating much of the gateway service's internals over to resolvers, and making the REST endpoints execute GraphQL under the hood. It's been such a great experience it's how I want to build any REST APIs in the future.
+
+[Lacinia]: https://github.com/walmartlabs/lacinia
+
+I setup an instance of [GraphiQL][] to demo the new API. But while working with the mobile team to transition from our ad-hoc REST endpoints to using the new technology, there's not a lot of resources to understand how to work with a GraphQL API aside from, _just use a library_. While that might be a good idea, the popular libraries tend to be quite heavyweight, solve problems not common to all implementations of GraphQL (including ours), and tend to be prescriptive about client-side state management.
+
+[GraphiQL]: https://medium.com/the-graphqlhub/graphiql-graphql-s-killer-app-9896242b2125
+
+If you just want to understand how to work with it there's not a lot of beginner-friendly info. The documentation can be a bit abstract at times, and often conflates the topics of providing, consuming, resolving and responding to GraphQL queries. GitHub [has a good guide][github-guide], but unless you're working with their API it's not apparent that their resource is a general one.
+
+[github-guide]: https://developer.github.com/v4/guides/forming-calls/
+</Section>
+<Section leadingThought break="space">
+
+Let's get started by making some simple queries against GitHub's [extensive GraphQL API][github-api] and [API Explorer using GraphiQL][github-graphiql], let's make some simple queries. Any demo involving HTTP ought to provide examples using [curl][].
+
+[curl]: https://curl.haxx.se/
+[github-api]: https://developer.github.com/v4/
+[github-graphiql]: https://developer.github.com/v4/explorer/
+
+First, [create a personal token for use on the command-line][github-auth]. In the examples below, this will be `$TOKEN`. I'll prettify the results a bit. Let's use GitHub's example query to see if it works:
+
+[github-auth]: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/
+
+<CodeEmbed file={props.siblings['1-whoami.bash']} />
+</Section>

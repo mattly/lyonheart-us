@@ -62,6 +62,11 @@ const NavTitle = styled.span({
 })
 
 export default function ArticleTemplate({ data: { mdx, site } }) {
+  const siblings = {}
+  mdx.siblings.forEach(file => {
+    const relPath = file.relativePath.substr(mdx.parent.relativeDirectory.length + 1)
+    siblings[relPath] = file
+  })
   const articleClass = cx({
     hasAsides: !mdx.frontmatter.pageWidth,
   })
@@ -70,7 +75,7 @@ export default function ArticleTemplate({ data: { mdx, site } }) {
     <Layout>
       <Article width={mdx.frontmatter.pageWidth} className={articleClass}>
         <MDXProvider components={shortcodes}>
-          <MDXRenderer {...mdx} {...mdx.frontmatter}>
+          <MDXRenderer {...mdx} {...mdx.frontmatter} siblings={siblings}>
             {mdx.body}
           </MDXRenderer>
         </MDXProvider>
@@ -118,26 +123,18 @@ export const pageQuery = graphql`
         pageWidth
         banner {
           childImageSharp {
-            fluid(maxWidth: 1920) {
-              ...GatsbyImageSharpFluid
-            }
+            fluid(maxWidth: 1920) { ...GatsbyImageSharpFluid }
           }
         }
       }
-      next {
-        ...relPage
-      }
-      prev {
-        ...relPage
-      }
+      parent { ... on File { relativeDirectory }}
+      siblings { contents, relativePath }
+      next { ...relPage }
+      prev { ...relPage }
     }
   }
   fragment relPage on Mdx {
-    fields {
-      path
-    }
-    frontmatter {
-      title
-    }
+    fields { path }
+    frontmatter { title }
   }
 `
