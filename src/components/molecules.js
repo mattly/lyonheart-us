@@ -1,7 +1,7 @@
-
 export const font = {
     family: {
-        sans: 'sans-serif;',
+        sans: 'sans-serif',
+        serif: 'serif',
     },
     size: {
         sm1: "0.75rem",
