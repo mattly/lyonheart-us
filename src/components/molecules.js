@@ -73,6 +73,7 @@ export const box = {
 }
 
 export const breakingWide = `@media screen and (min-width: 768px)`
+export const prefersDark = `@media (prefers-color-scheme: dark)`
 
 export const column = {
   fullBleed: {
