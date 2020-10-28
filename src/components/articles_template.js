@@ -128,7 +128,7 @@ export const pageQuery = graphql`
         }
       }
       parent { ... on File { relativeDirectory }}
-      siblings { contents, relativePath }
+      siblings { contents, relativePath, extension }
       next { ...relPage }
       prev { ...relPage }
     }

@@ -20,7 +20,6 @@ const Section = styled.section(
     '.hasAsides &': asideContainer,
   },
   (props) => {
-    console.log(props)
     const articleLead = props.articleLead && {
       marginTop: spacing.md,
       marginBottom: spacing.md,

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import Img from 'gatsby-image'
 

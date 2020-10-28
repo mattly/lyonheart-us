@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+// import { useStaticQuery, graphql } from "gatsby"
 import { Global } from '@emotion/core'
 
 import { type, breakingWide } from './molecules'
@@ -8,11 +8,11 @@ import '../styles/colors.css'
 import '../styles/root.css'
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site { siteMetadata { title } }
-    }
-  `)
+  // const data = useStaticQuery(graphql`
+  //   query SiteTitleQuery {
+  //     site { siteMetadata { title } }
+  //   }
+  // `)
 
   return (
     <>

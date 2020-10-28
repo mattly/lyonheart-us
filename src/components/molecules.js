@@ -6,6 +6,7 @@ export const font = {
   },
   size: {
     sm1: "0.75rem",
+    smX: "0.75rem",
     sm: "0.875rem",
     md: "1rem",
     lg1: "1.25rem",
@@ -48,6 +49,7 @@ type.LeadingThought = {
 
 export const spacing = {
   smX: "0.5rem",
+  sm: "0.75rem",
   md: "1rem",
   lg1: "2rem",
 }
@@ -65,6 +67,8 @@ const colBase = {
 export const box = {
     radius: {
         tiny: '0.25rem',
+        med: '0.5rem',
+        large: '1rem',
     }
 }
 
