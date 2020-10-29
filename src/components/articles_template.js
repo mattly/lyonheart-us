@@ -6,6 +6,7 @@ import { cx } from "emotion"
 import styled from "@emotion/styled"
 
 import Article from "./article"
+import Colophon from "./colophon"
 import Layout from "./layout"
 import shortcodes from "./shortcodes"
 import { type, spacing, column, breakingWide } from "./molecules"
@@ -52,6 +53,7 @@ const NavItem = styled.div(
 )
 const NavLink = styled.a({
   color: "inherit",
+  textDecoration: 'none',
 })
 const NavRel = styled.span({
   display: "block",
@@ -70,12 +72,20 @@ export default function ArticleTemplate({ data: { mdx, site } }) {
   const articleClass = cx({
     hasAsides: !mdx.frontmatter.pageWidth,
   })
-  const width = mdx.frontmatter.pageWdidth || 'wide'
+  const width = mdx.frontmatter.pageWidth || 'wide'
+  const colophon = {
+    title: mdx.frontmatter.title,
+    path: mdx.fields.path,
+    siteUrl: ``,
+    renderYear: site.renderYear,
+    humanDate: mdx.frontmatter.humanDate,
+    machineDate: mdx.frontmatter.machineDate,
+  }
   return (
     <Layout>
-      <Article width={mdx.frontmatter.pageWidth} className={articleClass}>
+      <Article width={width} className={articleClass}>
         <MDXProvider components={shortcodes}>
-          <MDXRenderer {...mdx} {...mdx.frontmatter} siblings={siblings}>
+          <MDXRenderer {...mdx} {...mdx.frontmatter} siblings={siblings} colophon={colophon}>
             {mdx.body}
           </MDXRenderer>
         </MDXProvider>
@@ -113,13 +123,19 @@ export const pageQuery = graphql`
       host
       port
       pathPrefix
+      renderYear: buildTime(formatString: "YYYY")
     }
     mdx(id: { eq: $id }) {
       body
+      fields {
+        path
+      }
       frontmatter {
         title
         subtitle
         date
+        humanDate: date(formatString: "MMMM Do, YYYY")
+        machineDate: date(formatString: "YYYY-MM-DD")
         pageWidth
         banner {
           img: childImageSharp {

@@ -14,10 +14,15 @@ export const type = {
   lg4: "2.25rem",
   lg5: "3rem",
   leading: {
+    none: "1rem",
     tight: "1.15rem",
+    short: "1.33rem",
     normal: "1.66rem",
     title: "2.25rem",
   },
+  tracking: {
+    wide: '0.05rem',
+  }
 }
 
 type.LeadingThought = {

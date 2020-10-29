@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from "@emotion/styled"
 
-import { font, spacing } from './molecules'
+import { type, spacing } from './molecules'
 
 const Head = styled.header({
     paddingTop: spacing.md,
@@ -11,7 +11,7 @@ const Head = styled.header({
 
 const Title = styled.h1({
     margin: 0,
-    fontSize: font.lg4,
+    fontSize: type.lg4,
 })
 
 const HeaderPlain = ({title}) => {

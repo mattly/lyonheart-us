@@ -13,7 +13,6 @@ export default function ArticleTemplate({ data: { mdx } }) {
         const relPath = slide.parent.relativePath.substr(mdx.parent.relativeDirectory.length + 1)
         imageMap[relPath] = slide
     })
-    console.log(imageMap)
   return (
     <Layout>
       <Article width={mdx.frontmatter.pageWidth}>
