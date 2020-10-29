@@ -6,6 +6,7 @@ import { Global } from '@emotion/core'
 import { type, breakingWide } from './molecules'
 import '../styles/colors.css'
 import '../styles/root.css'
+import '../styles/plex.css'
 
 const Layout = ({ children }) => {
   // const data = useStaticQuery(graphql`
@@ -20,12 +21,12 @@ const Layout = ({ children }) => {
         styles={{
           '*': { boxSizing: 'border-box' },
           html: {
-            fontFamily: type.font.serif,
-            fontSize: '16px',
+            fontFamily: type.serif,
+            fontSize: '18px',
             backgroundColor: 'var(--color-bg)',
             color: 'var(--color-fg)',
             [breakingWide]: {
-              fontSize: '18px',
+              fontSize: '20px',
             }
           },
           body: { margin: 0 },

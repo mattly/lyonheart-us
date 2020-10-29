@@ -6,7 +6,7 @@ import { type, column } from './molecules'
 const Article = styled.article({
     position: 'relative',
     lineHeight: type.leading.normal,
-    fontSize: type.font.size.md,
+    fontSize: type.md,
 }, ({ width }) => {
     return {
         ...column[width || 'wide'],

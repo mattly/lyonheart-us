@@ -1,4 +1,5 @@
 import Img from 'gatsby-image'
+import styled from '@emotion/styled'
 
 import Aside from './aside'
 import CodeInline from './code-inline'
@@ -12,7 +13,10 @@ import Section from './section'
 import Slide from './slide'
 import Tabs from './tabs'
 
+import { underlinedLink } from './molecules'
+
 export default {
+    a: styled.a(underlinedLink),
     inlineCode: CodeInline,
     Aside,
     CodeEmbed,

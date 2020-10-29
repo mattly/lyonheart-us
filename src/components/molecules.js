@@ -1,39 +1,18 @@
-export const font = {
-  family: {
-    sans: "sans-serif",
-    serif: "serif",
-    mono: "monospace",
-  },
-  size: {
-    sm1: "0.75rem",
-    smX: "0.75rem",
-    sm: "0.875rem",
-    md: "1rem",
-    lg1: "1.25rem",
-    lg4: "2.25rem",
-  },
-  weight: {
-    normal: 400,
-    semibold: 600,
-    bold: 700,
-  },
-}
-
 export const type = {
-  font: {
-    family: font.family,
-    ...font.family,
-    size: font.size,
-    ...font.size,
-    weight: font.weight,
-    ...font.weight,
-  },
-    family: font.family,
-    ...font.family,
-    size: font.size,
-    ...font.size,
-  weight: font.weight,
-  ...font.weight,
+  sans: "ibm plex sans, Helvetica Neue, Arial, sans-serif",
+  serif: "ibm plex serif, Georgia, Times, serif",
+  mono: "ibm plex mono, menlo, dejavu sans mono, bitstream vera sans mono, Courier, monospace",
+  normal: 400,
+  semibold: 600,
+  bold: 700,
+  sm1: "0.75rem",
+  smX: "0.75rem",
+  sm: "0.875rem",
+  md: "1rem",
+  lg1: "1.25rem",
+  lg2: "1.5rem",
+  lg4: "2.25rem",
+  lg5: "3rem",
   leading: {
     tight: "1.15rem",
     normal: "1.66rem",
@@ -42,8 +21,8 @@ export const type = {
 }
 
 type.LeadingThought = {
-  fontSize: font.size.lg1,
-  fontWeight: font.weight.bold,
+  fontSize: type.lg1,
+  fontWeight: type.bold,
   lineHeight: type.leading.normal,
 }
 
@@ -95,4 +74,9 @@ export const asideContainer = {
     "& > *": { gridColumn: 1 },
     "& > aside": { gridColumn: 2 },
   },
+}
+
+export const underlinedLink = {
+  color: 'inherit',
+  textDecoration: 'underline var(--color-local-link) solid 2px',
 }

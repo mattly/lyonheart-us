@@ -5,8 +5,8 @@ import { spacing, type, breakingWide } from './molecules'
 
 const Aside = styled.aside({
     marginBottom: spacing.md,
-    fontFamily: type.font.family.sans,
-    fontSize: type.font.size.sm1,
+    fontFamily: type.sans,
+    fontSize: type.sm1,
     lineHeight: type.leading.tight,
 
     [breakingWide]: {

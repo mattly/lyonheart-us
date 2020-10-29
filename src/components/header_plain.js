@@ -11,7 +11,7 @@ const Head = styled.header({
 
 const Title = styled.h1({
     margin: 0,
-    fontSize: font.size.lg4,
+    fontSize: font.lg4,
 })
 
 const HeaderPlain = ({title}) => {

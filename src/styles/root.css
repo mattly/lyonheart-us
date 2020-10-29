@@ -1,37 +1,46 @@
 :root {
-    --color-bg-oo: var(--gry-0);
-    --color-bg-o: var(--gry-0a);
-    --color-bg: var(--gry-1);
-    --color-bg-x: var(--gry-2);
-    --color-bg-xx: var(--gry-3);
-    --color-bg-xxx: var(--gry-4);
-    --color-fg: var(--gry-a);
-    --color-fg-x: var(--gry-9);
-    --color-fg-xx: var(--gry-8);
-    --color-fg-xxx: var(--gry-7);
-    --color-link: var(--red-8);
-    --highlight-fg-yellow: var(--yel-a);
-    --highlight-bg-yellow: var(--yel-1);
-    --highlight-fg-green: var(--grn-a);
-    --highlight-bg-green: var(--grn-1);
-    --color-bg-blue: var(--blu-2);
+  --color-bg-oo: var(--gry-0);
+  --color-bg-o: var(--gry-0a);
+  --color-bg: var(--gry-1);
+  --color-bg-x: var(--gry-2);
+  --color-bg-xx: var(--gry-3);
+  --color-bg-xxx: var(--gry-4);
+  --color-fg: var(--gry-a);
+  --color-fg-x: var(--gry-9);
+  --color-fg-xx: var(--gry-8);
+  --color-fg-xxx: var(--gry-7);
+  --color-link: var(--red-8);
 
-    @media (prefers-color-scheme: dark) {
-        --color-bg-oo: var(--gry-b);
-        --color-bg-o: var(--gry-ba);
-        --color-bg: var(--gry-a);
-        --color-bg-x: var(--gry-9);
-        --color-bg-xx: var(--gry-8);
-        --color-bg-xxx: var(--gry-7);
-        --color-fg: var(--gry-1);
-        --color-fg-x: var(--gry-2);
-        --color-fg-xx: var(--gry-3);
-        --color-fg-xxx: var(--gry-4);
-        --color-link: var(--red-4);
-        --highlight-fg-yellow: var(--yel-0);
-        --highlight-bg-yellow: var(--yel-9);
-        --highlight-fg-green: var(--grn-0);
-        --highlight-bg-green: var(--grn-9);
-        --color-bg-blue: var(--blu-9);
-    }
+  --highlight-fg-yellow: var(--yel-a);
+  --highlight-bg-yellow: var(--yel-1);
+  --highlight-fg-green: var(--grn-a);
+  --highlight-bg-green: var(--grn-1);
+  --color-bg-blue: var(--blu-2);
+
+  --color-fg-title: var(--gry-1);
+  --color-fg-title-shadow: var(--gry-9);
+
+  --color-local-link: var(--color-link);
+  --color-local-bg: var(--color-bg)
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-oo: var(--gry-b);
+    --color-bg-o: var(--gry-ba);
+    --color-bg: var(--gry-a);
+    --color-bg-x: var(--gry-9);
+    --color-bg-xx: var(--gry-8);
+    --color-bg-xxx: var(--gry-7);
+    --color-fg: var(--gry-1);
+    --color-fg-x: var(--gry-2);
+    --color-fg-xx: var(--gry-3);
+    --color-fg-xxx: var(--gry-4);
+    --color-link: var(--red-4);
+    --highlight-fg-yellow: var(--yel-0);
+    --highlight-bg-yellow: var(--yel-9);
+    --highlight-fg-green: var(--grn-0);
+    --highlight-bg-green: var(--grn-9);
+    --color-bg-blue: var(--blu-9);
+  }
 }

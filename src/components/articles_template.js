@@ -24,8 +24,8 @@ const Nav = styled.nav({
     gridTemplateColumns: "1fr 1fr 1fr",
   },
   borderTop: `1px dotted`,
-  fontFamily: type.font.sans,
-  fontSize: type.font.sm1,
+  fontFamily: type.sans,
+  fontSize: type.sm1,
   textTransform: "uppercase",
 })
 
@@ -55,7 +55,7 @@ const NavLink = styled.a({
 })
 const NavRel = styled.span({
   display: "block",
-  fontWeight: type.font.bold,
+  fontWeight: type.bold,
 })
 const NavTitle = styled.span({
   // color: link-color
@@ -122,8 +122,12 @@ export const pageQuery = graphql`
         date
         pageWidth
         banner {
-          childImageSharp {
-            fluid(maxWidth: 1920) { ...GatsbyImageSharpFluid }
+          img: childImageSharp {
+            fluid(maxWidth: 2048) { ...GatsbyImageSharpFluid }
+            fixed(fit: COVER, width: 2048) { ...GatsbyImageSharpFixed }
+            sm: fixed(width: 800) { ...GatsbyImageSharpFixed }
+            md: fixed(width: 1200) { ...GatsbyImageSharpFixed }
+            lg: fixed(width: 2048) { ...GatsbyImageSharpFixed }
           }
         }
       }
