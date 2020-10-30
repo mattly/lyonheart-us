@@ -48,4 +48,19 @@ First, [create a personal token for use on the command-line][github-auth]. In th
   defaultResult={{ file:props.siblings['1-whoami.json'] }}
 />
 
+Indeed it did! A few things for your attention:
+
+1. The query is a POST request with a JSON body. This is [standard][graphql-post] for GraphQL over HTTP. Don't argue about REST semantics here --- POST is for the query because it might be too large to fit in url query parameters.
+
+2. The query is a string at the `query` field inside the request body. The API server will parse the string into the query structure.
+
+3. The query body is not valid JSON. GraphQL queries are their own language and many editors can highlight them specially.
+
+4. The data we wanted `[queryRoot viewer login]` is in the response body at the `data` key.
+
+[graphql-post]: http://graphql.org/learn/serving-over-http/#post-request
+
+While that covers the basics, you really should know about variables, mutations, and errors.
+
+
 </Section>

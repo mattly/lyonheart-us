@@ -1,0 +1,5 @@
+query UserInfo($user: ID!) {
+  user(login: $user) {
+    login name bio company location websiteUrl createdAt
+    repositories { totalCount }
+    viewerCanFollow viewerIsFollowing }}

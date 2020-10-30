@@ -1,0 +1,6 @@
+  mutation StarRepo($id: ID!) {
+    addStar(input: {starrableId: $id}) {
+      starrable {
+        ... on Repository { name }
+        viewerHasStarred
+        stargazers { totalCount }}}}

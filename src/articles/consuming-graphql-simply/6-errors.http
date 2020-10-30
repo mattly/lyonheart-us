@@ -1,0 +1,11 @@
+POST /graphql HTTP/1.1
+Authorization: bearer $TOKEN
+Content-Type: application/json; charset=utf-8
+Host: api.github.com
+
+{"query":"query UserInfo($user: ID!) {
+  user(login: $user) {
+    login name bio company location websiteUrl createdAt
+    repositories { totalCount }
+    viewerCanFollow viewerIsFollowing }}",
+ "variables": {"user": "mattly"}}

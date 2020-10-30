@@ -10,9 +10,19 @@ const Section = styled.section(
     columnGap: spacing.md,
     rowGap: spacing.md,
 
-    "& > p": {
+    "& p, & > li, & > ol": {
       marginTop: 0,
       marginBottom: 0,
+    },
+    "& > li, & > ol": {
+      paddingLeft: spacing.md,
+      p: {
+        marginTop: 0,
+        marginBottom: spacing.sm,
+      },
+      '& li:last-child p': {
+        marginBottom: 0,
+      }
     },
 
     '.hasAsides &': asideContainer,

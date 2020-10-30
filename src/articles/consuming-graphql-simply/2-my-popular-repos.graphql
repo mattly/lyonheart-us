@@ -1,0 +1,9 @@
+query {
+  viewer {
+    repositories(
+      first: 3,
+      orderBy: {
+        field: STARGAZERS,
+        direction: DESC }) {
+      nodes {
+        name }}}}

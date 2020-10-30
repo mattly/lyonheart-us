@@ -1,0 +1,12 @@
+POST /graphql HTTP/1.1
+Authorization: bearer $TOKEN
+Content-Type: application/json; charset=utf-8
+Host: api.github.com
+
+{"query":"mutation StarRepo($id: ID!) {
+  addStar(input: {starrableId: $id}) {
+    starrable {
+      ... on Repository { name }
+      viewerHasStarred
+      stargazers { totalCount }}}}",
+ "variables": {"id": "MDEwOlJlcG9zaXRvcnkxMDg4OTA0MA=="}}

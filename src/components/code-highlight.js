@@ -67,7 +67,7 @@ const Wrapper = styled.div(
       padding: 0,
       fontFamily: type.mono,
       fontSize: type.smX,
-      lineHeight: 1,
+      lineHeight: type.leading.tight,
       ...syntaxTheme,
     },
   },

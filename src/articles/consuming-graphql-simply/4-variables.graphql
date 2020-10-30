@@ -1,0 +1,9 @@
+query UserMostStarredRepos($user: String!) {
+  user(login: $user) {
+    repositories(
+      first: 3,
+      orderBy: {
+        field: STARGAZERS,
+        direction: DESC }) {
+    nodes {
+      name stargazers { totalCount }}}}}
