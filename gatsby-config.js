@@ -1,11 +1,18 @@
 const plugin = (resolve, options) => ({ resolve, options })
 const fileSource = (name, path) => plugin(`gatsby-source-filesystem`, { name, path: `${__dirname}/src${path}` })
 
+const link = (href, text, title) => ({ href, text, title })
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `lyonheart`,
+    description: `the personal site of Matthew Lyon`,
+    author: `Matthew Lyon`,
+    footerLinks: [
+      link('mailto:matthew@lyonheart.us', 'matthew@lyonheart.us', "humans welcome to email me"),
+      link('https://twitter.com/mattly', '@mattly', "tweeting/bleating"),
+      link('https://github.com/mattly', 'github/mattly', "code wasteland"),
+    ]
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -16,6 +23,7 @@ module.exports = {
     plugin(`gatsby-plugin-mdx`, {
       gatsbyRemarkPlugins: [
         `gatsby-remark-images`,
+        `gatsby-remark-rewrite-relative-links`,
       ]
     }),
     `gatsby-plugin-emotion`,

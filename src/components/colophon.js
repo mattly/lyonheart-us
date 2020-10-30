@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import { type, spacing } from './molecules'
+import { type } from './molecules'
 
 const Section = styled.section({
   marginTop: '4px',
@@ -19,9 +19,9 @@ const Section = styled.section({
     display: 'inline',
   },
   'p::before': {
-      content: '\\00b6',
+      content: '"\\00b6"',
       padding: '0 0.25rem',
-    },
+  },
   'a': {
     color: 'var(--color-link)',
   }

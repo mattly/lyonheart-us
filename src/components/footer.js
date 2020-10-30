@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { type, spacing } from './molecules'
 
 const Footer = styled.footer({
+  marginTop: spacing.md,
   fontSize: type.sm,
   lineHeight: type.leading.none,
   '& > :first-child': {
@@ -15,7 +16,6 @@ const Footer = styled.footer({
 
 
 const FooterSection = styled.section({
-  // paddingBottom: spacing.md,
 })
 const FooterSectionTitle = styled.h2({
   margin: 0,

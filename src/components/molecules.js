@@ -5,6 +5,7 @@ export const type = {
   normal: 400,
   semibold: 600,
   bold: 700,
+  sm2: "0.67rem",
   sm1: "0.75rem",
   smX: "0.75rem",
   sm: "0.875rem",

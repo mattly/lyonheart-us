@@ -19,6 +19,7 @@
     "gatsby-plugin-react-helmet": "^3.3.14",
     "gatsby-plugin-sharp": "^2.6.42",
     "gatsby-remark-images": "^3.3.39",
+    "gatsby-remark-rewrite-relative-links": "^1.0.8",
     "gatsby-source-filesystem": "^2.3.34",
     "gatsby-transformer-sharp": "^2.5.17",
     "prism-react-renderer": "^1.1.1",

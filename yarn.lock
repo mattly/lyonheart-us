@@ -7018,6 +7018,13 @@ gatsby-remark-images@^3.3.39:
     unist-util-select "^1.5.0"
     unist-util-visit-parents "^2.1.2"
 
+gatsby-remark-rewrite-relative-links@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-rewrite-relative-links/-/gatsby-remark-rewrite-relative-links-1.0.8.tgz#b2a1190336fa0760518a4e318bc2c503a904f20a"
+  integrity sha512-7jCyMM+AWdp8mFLUWuJ5RGPQIKFzpLqf253QR6Aq8xrhlV0Bcz2k1+03MxPnGP0R5XetIoRm2W864KrbIZdk9Q==
+  dependencies:
+    unist-util-visit "^2.0.0"
+
 gatsby-source-filesystem@^2.3.34:
   version "2.3.35"
   resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.3.35.tgz#a64815f1c0bc1614519ec2dd1eef49629de6c2e5"

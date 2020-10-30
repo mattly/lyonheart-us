@@ -6,7 +6,6 @@ import { cx } from "emotion"
 import styled from "@emotion/styled"
 
 import Article from "./article"
-import Colophon from "./colophon"
 import Layout from "./layout"
 import shortcodes from "./shortcodes"
 import { type, spacing, column, breakingWide } from "./molecules"
@@ -82,7 +81,7 @@ export default function ArticleTemplate({ data: { mdx, site } }) {
     machineDate: mdx.frontmatter.machineDate,
   }
   return (
-    <Layout>
+    <Layout width={width}>
       <Article width={width} className={articleClass}>
         <MDXProvider components={shortcodes}>
           <MDXRenderer {...mdx} {...mdx.frontmatter} siblings={siblings} colophon={colophon}>
@@ -122,7 +121,6 @@ export const pageQuery = graphql`
     site {
       host
       port
-      pathPrefix
       renderYear: buildTime(formatString: "YYYY")
     }
     mdx(id: { eq: $id }) {

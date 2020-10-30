@@ -5,14 +5,12 @@ import { spacing, asideContainer, type } from "./molecules"
 
 const Section = styled.section(
   {
-    paddingBottom: spacing.md,
-
     display: "grid",
     gridTemplateColumns: "100%",
     columnGap: spacing.md,
     rowGap: spacing.md,
 
-    "& > *": {
+    "& > p": {
       marginTop: 0,
       marginBottom: 0,
     },

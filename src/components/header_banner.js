@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
-import Img from "gatsby-image"
 
 import { column, spacing, type, breakingWide } from "./molecules"
 
@@ -14,12 +13,6 @@ const Header = styled.header({
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
 })
-const bannerStyle = {
-  position: "absolute",
-  left: 0,
-  right: 0,
-  height: "400px",
-}
 const Masthead = styled.div({
   ...column.wide,
   position: "absolute",
@@ -64,6 +57,15 @@ const scrollBanner = ref => {
   }
 }
 
+const mdQuery = `
+  (min-width: 960px),
+  (max-width: 400px) and (min-resolution: 2dppx)
+`
+const lgQuery = `
+  (min-width: 1500px),
+  (min-width: 960px) and (min-resolution: 1.4dppx)
+`
+
 const HeaderBanner = ({
   title,
   subtitle,
@@ -72,20 +74,17 @@ const HeaderBanner = ({
   innerBottom,
 }) => {
   const header = useRef()
-  const enableScroll = useEffect(scrollBanner(header))
+  useEffect(scrollBanner(header))
   return (
     <Header
       ref={header}
       css={css({
-        backgroundImage: `url(${banner.img.sm.base64})`,
         backgroundPosition: `${bannerBottom || 50}%`,
-        "@media (max-width: 800px) and (max-resolution: 1.3dppx)": {
-          backgroundImage: `url(${banner.img.sm.src})`,
-        },
-        "@media (max-width: 400px) and (min-resolution: 2dppx)": {
+        backgroundImage: `url(${banner.img.sm.src})`,
+        [`@media ${mdQuery}`]: {
           backgroundImage: `url(${banner.img.md.src})`,
         },
-        "@media (min-width: 800px) and (min-resolution:  1.5dppx), (min-width: 1500px)": {
+        [`@media ${lgQuery}`]: {
           backgroundImage: `url(${banner.img.lg.src})`,
         },
       })}
