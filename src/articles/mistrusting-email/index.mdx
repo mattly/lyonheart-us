@@ -24,7 +24,7 @@ This attack is the result of an architectural flaw than any problem with a techn
 I'll cover three ways in which networked services use email addresses: Communication, Identification, and Authentication, and how conflating them risks users' security.
 
 </Section>
-<Section leadingThought break="space">
+<Section leadingThought >
 
 The obvious thing to use an email address for is to send it messages.  Despite its flaws, email is still the most convenient channel to send messages to any other person on the internet.
 
@@ -50,7 +50,7 @@ address](http://www.experimentgarden.com/2009/11/why-does-amazoncom-allows-multi
 To prevent abuse, a service will want to verify ownership of the email address, so they'll send it a secret token and ask the user to prove they received the email by clicking a link.  Password resets use a similar pattern.  The assumption: Only the account owner can read email sent to the address.  It's a flawed assumption.
 
 </Section>
-<Section leadingThought break="space">
+<Section leadingThought >
 
 Technical people generally understand that protecting access to their email is crucial -- it is the gateway to resetting passwords and taking over accounts on every service associated with that email address, so the most important thing to protect with [Multi-Factor Authentication][mfa] is [your email account][2fa-google], though you should [use it everywhere][2fa-everywhere].
 
@@ -66,7 +66,7 @@ I've worked at companies in the past where I wouldn't put it past the domain adm
 [bofh]: http://www.bofh.net/
 
 </Section>
-<Section leadingThought break="space">
+<Section leadingThought >
 
 Finally, the flaw: nearly any service that uses email addresses as an identification mechanism is *also* using them for authentication.
 
@@ -81,7 +81,7 @@ For the services that don't offer multi-factor authentication, a rogue administr
 In theory, protecting yourself is easy: just don't add email addresses to your accounts unless you can trust the mail administrator.  ...Unless your project's security policies dictate that all project-related email go to the project-specific address.
 
 </Section>
-<Section leadingThought break="space">
+<Section leadingThought >
 
 This is where many technically-proficient and security-minded readers suggest I simply setup per-project accounts for each service.  I believe that response is user-hostile, and for some services it would mean jumping through a series of complex hoops that any good User Experience person would recoil from in horror.
 
@@ -139,7 +139,7 @@ Account ownership re-assignment happened to a few friends during a migration fro
 [box-acct-link]: http://www.itworld.com/article/2833267/it-management/how-box-com-allowed-a-complete-stranger-to-delete-all-my-files.html
 
 </Section>
-<Section leadingThought break="space">
+<Section leadingThought >
 
 If your service allows a user to associate more than one email address with an account, allow users to specify an email should be a *login email* or not.  The email address given at account creation should be a *login email*, additional email addresses are not by default login-enabled, and users should be able to change the *login email* status of any of their addresses at any time, so long as they always have at least one.
 

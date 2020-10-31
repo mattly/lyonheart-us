@@ -25,6 +25,11 @@ const roles = {
     borderBottomRightRadius: box.radius.large,
   },
 }
+roles.sample = {
+  ...roles.example,
+  borderBottomLeftRadius: box.radius.large,
+  borderBottomRightRadius: box.radius.large,
+}
 
 const dark = (styles) => ({
   [prefersDark]: {

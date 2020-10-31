@@ -1,0 +1,7 @@
+{ "data": null,
+  "errors": [{
+    "message":
+    "Type mismatch on variable $user and argument login (ID! / String!)",
+    "locations": [{
+      "line": 1,
+      "column": 41 }]}]}

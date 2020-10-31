@@ -1,0 +1,16 @@
+query {
+  viewer {
+    following(first: 100) {
+      nodes {
+        login
+        pinnedRepositories(first: 10) {
+          nodes { name languages(first: 10) { nodes { name }}}}
+        followers { totalCount }}}
+    followers(first: 100) {
+      nodes {
+        login
+        viewerIsFollowing
+        pinnedRepositories(first: 10) {
+          nodes { name languages(first: 10) { nodes { name }}}}
+        repositories { totalCount }
+        following { totalCount }}}}}

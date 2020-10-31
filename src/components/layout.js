@@ -78,7 +78,7 @@ const Layout = ({ children, width }) => {
       <SiteFooter width={width}>
         <FooterLinks>
           {site.meta.footerLinks.map(({ href, text, title }) => (
-            <FooterLink href={href} title={title}>{text}</FooterLink>
+            <FooterLink key={href} href={href} title={title}>{text}</FooterLink>
           ))}
         </FooterLinks>
         <Copyright>

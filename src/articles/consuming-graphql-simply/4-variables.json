@@ -1,0 +1,10 @@
+{ "data": {
+  "user": {
+    "repositories": {
+      "nodes": [
+        { "name": "vim-colors-pencil",
+          "stargazers": { "totalCount": 344 }},
+        { "name": "bork",
+          "stargazers": { "totalCount": 211 }},
+        { "name": "iterm-colors-pencil",
+          "stargazers": { "totalCount": 104 }}]}}}}

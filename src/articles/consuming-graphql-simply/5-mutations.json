@@ -1,0 +1,6 @@
+{ "data": {
+  "addStar": {
+    "starrable": {
+      "name": "bork",
+      "viewerHasStarred": true,
+      "stargazers": { "totalCount": 211 }}}}}

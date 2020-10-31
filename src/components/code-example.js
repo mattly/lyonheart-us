@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { css } from '@emotion/core'
+import styled from '@emotion/styled'
 
 import CodeEmbed from "./code-embed"
 import Tabs from "./tabs"
@@ -21,13 +22,19 @@ const handleStyle = css({
   }
 })
 
+const Wrapper = styled.div({
+  '&::last-child': {
+    marginBottom: spacing.md,
+  }
+})
+
 const CodeExample = ({ title, examples, defaultResult }) => {
   const tabs = examples.map(({ file }) => ({
     name: file.extension,
     content: <CodeEmbed key={file.relativePath} role="example" file={file} />
   }))
   return (
-    <div>
+    <Wrapper>
       <Tabs
         headerCss={headerStyle}
         handleCss={handleStyle}
@@ -38,7 +45,7 @@ const CodeExample = ({ title, examples, defaultResult }) => {
       <div>
         { defaultResult && <CodeEmbed role="result" {...defaultResult} />}
       </div>
-    </div>
+    </Wrapper>
   )
 }
 

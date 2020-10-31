@@ -3,6 +3,11 @@ import styled from "@emotion/styled"
 
 import { spacing, asideContainer, type } from "./molecules"
 
+const breaks = {
+  rule: {
+  },
+}
+
 const Section = styled.section(
   {
     display: "grid",
@@ -40,26 +45,28 @@ const Section = styled.section(
         }
       }
     }
-    let breaking = { }
-    if (props.break === 'space') {
-      breaking = {
-        marginTop: spacing.lg1,
+    const rule = props.rule && {
+      '&::before': {
+        display: 'block',
+        content: '" "',
+        marginTop: '-1px',
+        borderTop: '1px dotted'
       }
     }
     return {
       ...articleLead,
       ...(props.hasAsides ? asideContainer : {}),
       ...leadingThought,
-      ...breaking,
+      ...rule,
     }
   }
 )
 Section.propTypes = {
   articleLead: PropTypes.bool,
-  break: PropTypes.string,
   children: PropTypes.node.isRequired,
   hasAsides: PropTypes.bool,
   leadingThought: PropTypes.bool,
+  rule: PropTypes.bool,
 }
 
 export default Section
