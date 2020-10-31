@@ -14,6 +14,9 @@ const Aside = styled.aside({
         marginBottom: '-100%',
     },
 
+    p: {
+        marginBottom: spacing.sm,
+    },
     '& > *:first-child': {
         marginTop: 0,
     },

@@ -1,0 +1,359 @@
+---
+title:      Understanding Time Zones
+subtitle:   Stop Treating the Clock Like a Number
+date:       2018-03-13
+banner:     ./banner.jpg
+---
+
+<HeaderBanner {...props.frontmatter} />
+<Section>
+
+It's that time of the year again -- for programmers around the world to complain about the clock. Twice a year, every year, our clocks change and we hear the same tired bellyaching _like clockwork_ about not just daylight saving time, but against time zones in general. _The world should standardize on UTC_, I hear often from my colleagues. Not long ago, I was among them:
+
+<Quote
+    variant="tweet"
+    href="https://twitter.com/mattly/status/303659660769116160?s=20"
+    source="@mattly, Feb 19 2013">
+
+when the programmers take over, timezones will be the first against the wall.
+
+</Quote>
+
+I've since changed my tune. Complaining about dealing with local clock time when dealing with computers is complaining about doing your job. Let's talk about why time zones aren't going anywhere anytime soon, why complaining about them is a symptom of entitlement, and explain how to think about clock so you can finally fix the bug in your test suite which causes a failure every day at 4-5pm Pacific, during non-DST hours.
+
+<Aside>
+
+This bug is a running joke among some ex-coworkers of mine.
+
+</Aside>
+</Section>
+<Section leadingThought rule>
+
+People who wrangle code for a living tend to think of time as a number. If you open the Developer Tools on this webpage, navigate to the Javascript console and type `Date.now()` it will return a number, which contributes to this abstraction mismatch. It encourages us to think, _I can do math with this._ You can, but only if you really understand how that number relates to the numbers you see on your clock. Thanks to our lifetime of experience reading clocks, we assume that's all we need to know on the subject.
+
+The notion of clock _changes_, let alone _corrections_ rub that ideology the wrong way. If you think a [Leap Second][leap-second] is bad, try coordinating something like the [Julian or Gregorian reforms][jg-reform] today. Sure, they solve different problems, but if you think time should be a linear, ever-increasing constant, you're [disagreeing with our understanding of relativity][relativity]. Of course, by the time you need to worry about that, the next logical step from thinking _time is a number_ is [metric time][metric-time], and if you think our system is problematic, imagine trying to convert years into units of _31.536 megaseconds_.
+
+[leap-second]: https://en.wikipedia.org/wiki/Leap_second
+[jg-reform]: https://en.wikipedia.org/wiki/Calendar_reform#Julian.2FGregorian_reforms
+[metric-time]: https://en.wikipedia.org/wiki/Metric_time
+[relativity]: https://en.wikipedia.org/wiki/Time_dilation
+
+<Aside>
+
+If your imagination needs help with the idea of megaseconds, go read Vernor Vinge's excellent Hugo-award winning novel, [A Deepness in the Sky](https://en.wikipedia.org/wiki/A_Deepness_in_the_Sky), which also introduces the concepts of _Programmer at Arms_ and _Code Archaeology_.
+
+</Aside>
+
+While many programmers generally are aware of the [Time Zone Database][], in my experience few understand its relationship to the libraries they rely on. Like a lot of people, they think that because time _seems_ simple and their lifetime of experience managing their calendar, they know what they need to know about it and never bother learning why their assumptions are bad.
+
+[Time Zone Database]: https://www.iana.org/time-zones
+</Section>
+<Section leadingThought>
+
+The first thing you must understand about time zones is that they are a legal solution to the problem of coordination in a system of distributed humans. Like most legal solutions, they are an imperfect compromise reflecting the history and nature of the culture's prevailing ruling caste. Like most legal solutions, they stem from political ideology, and fortunately it's comparatively benign.
+
+Before the locomotive and telegraph collapsed distance, the sun measured _clock time_: wherever you were, when a sundial said the sun was directly overhead, it was noon. The next town over might be a few minutes different, but getting there took a while, so it didn't matter. Every town kept their own time. Thanks to axial tilt and the Earth's elliptical orbit, the [time of solar noon will vary throughout the year][equation-of-time]. You think time zones are bad? Imagine programming for that world.
+
+[equation-of-time]: http://www.timeanddate.com/astronomy/equation-of-time.html
+
+<Aside>
+
+Alternately, try programmatically figuring out how to collect sales tax for any given municipality in the United States. It's not dissimilar.
+
+</Aside>
+
+Disruptive technologists came along and laid train tracks and telegraph wires, and suddenly travel got faster and communication got _much_ faster. Distance collapsed. Trains were the first to use a coordinated clock time that didn't track an exact solar time. They had a schedule to keep, and it was easier to measure against an arbitrary standard, called _[railway time][tz-history]_.
+
+[tz-history]: https://en.wikipedia.org/wiki/Time_zone#History
+
+Decades pass, and law enshrines the practice. Regions and nations draw boundaries, and in the rare case the next town over wasn't setting their clock by the same standard as yours, it was exactly an hour different. The trains run on time, people coordinate their business by wire, and adjust to the new standard.
+</Section>
+<Section leadingThought>
+
+The second thing you must understand about time zones is that they aren't going anywhere anytime soon. The sheer scale of coordination required to make it happen, the impact to people's lives, is so large in scope, and will have so many [unintended consequences][] it will be difficult to imagine. Imagine you're the most influential programmer in the world:
+
+[unintended consequences]: https://en.wikipedia.org/wiki/Unintended_consequences
+
+<Quote variant="story">
+
+You weren't expecting the call from the United Nations, but they wanted to know: what one policy change would help software improve the world. They offered you an unprecedented level of [political capital][], but the decision was easy -- convert the entire global economy to [UTC][]. The recommendation passes, officials draw up a schedule, and every person on the planet has five years to prepare for _the Conversion_, as they're calling it.
+
+[political capital]: https://en.wikipedia.org/wiki/Political_capital
+[UTC]: https://en.wikipedia.org/wiki/Coordinated_Universal_Time
+
+The Conversion proved to be a bigger deal than Y2K -- it turns out this was far more involved than simply "change everyone's local clock time to UTC". Businesses have to update their hours, redraw tons of schedules, records and plans re-written. The cost is staggering, and no nation is ready to make the cut-over by the deadline except Iceland, who it turned out was already observing UTC year-round anyway and didn't have to do anything.
+
+Several nations try to back out of The Conversion, but they're caught in a web of threatened sanctions, often by other nations that want to back out as well. Decades later, historians cited The Conversion as the cause for a war in the Middle East and the rise of authoritarian dictatorships in Southeast Asia. In continental Europe, the change of just one hour during winter and two during summer was enough to provoke riots and a hate group that smashes the fingers of programmers, calling themselves _[Ludd's][luddite] Children_. They've abandoned clock time altogether in favor of meeting <Highlight marker="serif">_at the last light of the day_</Highlight> and other such folksy malarkey.
+
+[luddite]: https://en.wikipedia.org/wiki/Luddite
+
+In the North America, people accepted _The Conversion_ with less violence, but it turns out that communication between people with different daylight schedules still needs a context for understanding the phase of the day they're in. On the west coast, they say they're <Highlight marker="serif">_a thirdday behind_</Highlight>, a subtle way of indicating to London colleagues that the meeting scheduled for Hour 13 is before sunrise.
+
+NeoLudditism hasn't caught on in the US the way it has in Europe, but after all the bugs caused by The Conversion -- failures of traffic control and life support systems, years of chaos trying to get things right -- things seem back to normal. Perhaps the best thing to come out of it is that no one wants to buy smart lightbulbs anymore.
+
+There's still about a century and a half of old legal records to convert. On the upside, a few corrupt corporations who were cooking their books no longer exist, but then there are horror stories of evidence in criminal trials thrown out, contracts mis-interpreted, and people who legally no longer exist. Half the relevant old records hadn't been digitized yet, and a booming industry developed around helping businesses and municipalities comply with your clock time regulations.
+
+You've caught a lot of flack for forcing this upon the world, and your name has become a curse. Bill Gates is busy working on [malaria][] and the [energy crisis][] and isn't returning your calls anymore. People who used to be your friends asked <Highlight marker="serif">_Why time zones? Why not [climate change][] or human trafficking? Why not economic disparity, genocide, religious fundamentalism, or any of a dozen other problems people consider more worthy of that kind of worldwide herculean coordination?_</Highlight>
+
+[malaria]: http://www.gatesfoundation.org/What-We-Do/Global-Health/Malaria
+[energy crisis]: http://www.wired.com/2011/06/mf_qagates/
+[climate change]: http://worrydream.com/ClimateChange/
+
+<p><Highlight marker="serif"><em>It was worth it,</em></Highlight> you tell yourself, <Highlight marker="serif"><em>because programmers no longer have to think about time localities except when working on juicy contracts for legacy systems.</em></Highlight></p>
+
+</Quote>
+
+My dystopian story may be hyperbolic, but any proposal to abandon local clock time is ludicrously complex and will create greater problems than the one it aims to solve. This is why when otherwise reasonable people say things like _local time is arbitrary, people can just have different schedules based on where they are in the world_ or _abolishing time zones would make our lives so much easier_, I say they act entitled. What I hear them say is, _seven billion other people should radically change their lives so I don't have learn a few things and think too hard about problems I'm being paid gobs of money to solve._ The people who say, _Well I can retrain my brain to get up at 11pm and go to bed at 3, so everyone else can too!_ also tend to think they're much smarter than everyone else, so I suspect it's the [Dunning-Kruger Effect][dkfx] in action.
+
+[dkfx]: https://en.wikipedia.org/wiki/Dunning–Kruger_effect
+
+<Aside>
+
+I've seen a lot of these self-same connoisseurs of simplicity [rail against ruthless syntax consistency][lisp] yet celebrate [counting from zero][zero-index], [baroque class hierarchies][oop], [tag soup template systems][tag soup], and [concurrency models][callbacks] that [HP Lovecraft][lovecraft] might recoil from in horror.
+
+[lisp]: http://www.cliki.net/Fear%20of%20Lisp
+[zero-index]: https://en.wikipedia.org/wiki/Zero-based_numbering
+[oop]: http://raganwald.com/2014/03/31/class-hierarchies-dont-do-that.html
+[tag soup]: http://blog.codinghorror.com/web-development-as-tag-soup/
+[callbacks]: http://callbackhell.com/
+[lovecraft]: https://en.wikipedia.org/wiki/H._P._Lovecraft
+</Aside>
+
+If you work in software and think the world serves to make your life easier, please consider a different career. The world and the people who pay you will remind you time and again that you serve to make _other peoples lives_ easier, not the other way around. You're treating a human problem like a math problem, and by doing so, creating subtle bugs in your work that will at best frustrate your users. If they're lucky, no one will come to their BBQ because everyone thought it was in the middle of the night. If they're not lucky, you'll kill them. It's no wonder people have started to use programmers as [scapegoats][].
+
+[scapegoats]: http://blog.cleancoder.com/uncle-bob/2015/10/14/VW.html
+<Aside>
+
+I've heard hushed stories about time zone related bugs resulting in the loss of life. It's sad, it's horrifying, and it's entirely preventable.
+
+Some time ago I organized a potluck on Facebook, scheduled shortly after the spring daylight time transition. Every time I edited the event it shifted the start time in the direction of the transition by an hour, and people ended up thinking it started at 4 in the morning.
+
+</Aside>
+
+If it's your thing, campaign to repeal daylight savings time. There's a lot of bang for the buck in that. But you have a lot of legal entities to convince of this before the problem goes away, and it will only ever go away for the timekeeping of the future. Personally, I believe there are [greater problems in the world deserving of attention][climate-change]. If you understand the domain of local clock time well and program defensively, you'll get daylight saving time handling almost for free.
+
+[climate-change]: http://worrydream.com/ClimateChange/
+</Section>
+<Section leadingThought>
+
+The third thing you need to know about time zones is they are fundamentally a locale problem.
+
+In the United States, we write the date `3/31/2018` where most of the rest of the world writes `31/3/2018` instead. Some countries use a [12 hour clock][] while others use [24 hours][], while some start counting at midnight, others [start counting at dawn][Ethiopia], and a few use times [past 24 hours][]. But Time zones aren't about formatting time --- they are a locale-dependent method for representing UTC time as a clock time, so that `Thur Mar 15 2018 00:00:00 GMT` becomes `Wed Mar 14 2018 17:00:00 GMT-0700 (PDT)`. There are already a lot of tools at our disposal for thinking about locale formatting, but understanding clock time and time zones as a locale problem makes thinking about them a lot simpler.
+
+[12 hour clock]: https://en.wikipedia.org/wiki/12-hour_clock
+[24 hours]: https://en.wikipedia.org/wiki/24-hour_clock
+[Ethiopia]: https://en.wikipedia.org/wiki/Date_and_time_notation_in_Ethiopia
+[past 24 hours]: https://en.wikipedia.org/wiki/24-hour_clock#Times_after_24:00
+</Section>
+<Section leadingThought>
+
+The fourth thing you need to know about time zones is the domain terminology. The terms and their meanings are straightforward, but I've met a lot of people with strongly held misconceptions about what means what.
+
+When I refer to <Highlight marker="yellow">clock time</Highlight>, I'm talking about the time and date you see on the timekeeping device you use to know if you're running late. It doesn't matter where you live, if the device is synced to anything, or how accurate the clock is. It's conveying a meaning you understand as a point in time.
+
+&#8232;<Highlight marker="yellow,bold">UTC</Highlight> stands for _Coordinated Universal Time_. The abbreviation is a compromise against the French _Temps Universel Coordonné_ so that the abbreviation is the same in English and French. UTC is the global standard for referencing a particular point in time. Time specified in UTC is the only time you should perform numerical arithmetic on. Unless you have a good reason, you should always store time in UTC.
+
+&#8232;<Highlight marker="green">UTC is not equivalent to GMT.</Highlight> It is the successor to GMT, which is no longer precisely defined for scientific purposes. GMT can vary from UTC by up to 0.9 seconds. I have never heard someone use _GMT_ when they did not mean to use _UTC_ instead. Records in GMT before 1925 follow historical astronomic convention and treat noon as hour 0 and midnight as hour 12. Greenwich itself observes _Western European Time_, which includes _British Summer Time_.
+
+&#8232;<Highlight marker="green">The number commonly known as _unix time_</Highlight> is the number of seconds since midnight, January 1st, 1970, UTC, which we commonly call the **Epoch**. This is the only _time_ that you can rightly do arithmetic with. Unix time is generally the easiest way to reference a particular point in time, especially if you don't care about the locality associated with the referenced point in time.
+
+A <Highlight>**UTC Offset**</Highlight> is the difference from UTC in hours and minutes a place observes local clock time for a particular date and _that's it_. For any given location, the offset could change throughout the year, and the rules for describing when the offset changes could change as well.
+
+&#8232;<Highlight marker="green">UTC Offsets are not time zones.</Highlight> If you have a local clock time and its offset, you may cast that time into UTC with the offset and then do math on it in UTC -- but you may _not_ then re-use the same offset to re-cast it to local clock time, unless you don't mind the occasional subtle bug that will drive you and your users mad.
+
+&#8232;<Highlight marker="green">*UTC Offsets may exceed twelve hours, and may be at intervals other than per-hour or half-hour*.</Highlight> If you need to check a UTC-provided offset is valid, there is a [canonical list][utc-offset-list], though it will change over time. Checking for half-hour intervals between `-12:00` and `+12:00` will fail valid UTC offsets.
+
+<Aside>
+
+I've seen people who should know better ship UTC-offset validation using the regex `-?(0[0-9]|1[0-2]):[03]0` to production, only to find subtle bugs months later where someone in an odd time zone somewhere could never use their service.
+
+</Aside>
+
+There are a handful of islands with UTC offsets greater than `+12:00`, the furthest east of which are the [Line Islands][line-islands] at `+14:00`, observing the same clock time as Hawai'i but one day ahead, and a part of the nation of [Kiribati][] which is mostly on the other side of 180 degrees longitude. Nepal has the offset of `+5:45`, one of only three with a forty-five minute offset.
+
+[utc-offset-list]: https://en.wikipedia.org/wiki/List_of_UTC_time_offsets
+[line-islands]: https://en.wikipedia.org/wiki/Line_Islands
+[Kiribati]: https://en.wikipedia.org/wiki/Line_Islands
+[Nepal]: https://en.wikipedia.org/wiki/Nepal_Standard_Time
+
+&#8232;<Highlight marker="yellow,bold">Standard Time</Highlight> is the setting of a local clock time to a particular offset from UTC. Because of the close relationship between time and longitude, it is possible to [line up standard times on a map][standard-offset-map] and pretend *Daylight Saving Time* doesn't exist.
+
+<Aside>
+
+In case you missed my snark, the linked map is horrendously inaccurate for a small bits of the year because it does not take into account that many nations observe daylight saving time for different periods.
+
+</Aside>
+
+[standard-offset-map]: https://en.wikipedia.org/wiki/Standard_time#/media/File:Standard_World_Time_Zones.png
+
+A <Highlight marker="yellow">**time zone**</Highlight> is a geographic area that observes a standard time, by culture, custom, or law. It is only by knowing an event's time zone that you can reliably do timestamp math on it to arrive at an accurately different point in time.
+
+&#8232;<Highlight marker="green">Colloquially, people talk about time zones by their common names</Highlight> such as _Eastern Time_, but in a global context this is ambiguous. The time zone which includes New York City has different properties and history than does the one which includes Toronto, though their clocks read the same most of the year.
+
+&#8232;<Highlight marker="green">For precision, you should refer to timezones using their names</Highlight> from the [IANA TZ Database][tz-list] (or _TZDB_), that is `America/New_York` and `America/Toronto` instead of _Eastern Time_ or _EST_. If you look at the TZDB list and blanche, I can't blame you. Its size is largely the result of legacy.
+
+&#8232;<Highlight marker="green">Abbreviations are no less ambiguous.</Highlight> While in the United States, you can reliably convey meaning with _CST_ and _CDT_, the prior can refer to _Cuba Standard Time_ and _China Standard Time_, and the latter _Cuba Daylight Time_. These are used for localization when you are displaying time to people who can interpret them unambiguously with context. You shouldn't use them without localization.
+
+<Aside>
+
+More often, people use _Central Standard Time_ even during daylight saving time and thanks to context people know what they mean.
+
+</Aside>
+
+Because time zones are political creations, both their <Highlight marker="green">geographic boundaries and rules for observing local clock time are subject to change</Highlight> through process of law. Thankfully, most of these changes trend towards simplification: consolidating multiple time zones into one, or simplifying daylight saving time rules.
+
+If you're not concerned with historical records, the distinction between `America/Indiana/Indianapolis` and most other `America/Indiana/` -prefixed time zones won't concern you. Before the [Uniform Time Act of 1966][dst-uta-1966] in the United States, municipalities defined their own rules for observing daylight saving time. The People's Republic of China had [7 time zones][China], each of which now officially observe _Beijing Time_.
+
+[tz-list]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+[tz-abbr-list]: http://www.timeanddate.com/time/zones/
+[dst-energy]: https://en.wikipedia.org/wiki/Energy_Policy_Act_of_2005
+[dst-uta-1966]: https://en.wikipedia.org/wiki/Uniform_Time_Act
+[Argentina]: https://en.wikipedia.org/wiki/Time_in_Argentina
+[China]: https://en.wikipedia.org/wiki/Time_in_China
+
+<Aside>
+
+Though in the westernmost province of China, some people set their clocks two hours behind to [Xinjiang Time][Xinjiang], listed in the TZDB as _Ürümqi Time_ because it is mostly observed along ethnic lines.
+[Xinjiang]: https://en.wikipedia.org/wiki/Xinjiang_Time
+
+</Aside>
+
+The <Highlight marker="yellow">Time Zone Database</Highlight> I mentioned above attempts to record all historical time zones and civil changes to time zones since the Unix Epoch. It defines a *time zone* as a geographic area where local clocks have all agreed since Epoch, and records the changes to the rules for determining a UTC offset for that zone. This is how the Javascript interpreter on your computer knows that in the United States, `new Date(2018, 2, 15)` is in Daylight Saving time, but `new Date(2003, 2, 15)` is in Standard Time.
+
+<Aside>
+
+For those unfamiliar with Javascript, the `2` refers to March, because Javascript uses [Zero-based Indexing](https://en.wikipedia.org/wiki/Zero-based_numbering) for months. There are people in the world who think this is a good idea.
+
+</Aside>
+
+&#8232;<Highlight marker="yellow,bold">Daylight Saving Time</Highlight> is the practice of setting the clock ahead during summer months to accommodate the fact that most people hate getting up early, and want to make the most of ample sunlight.
+
+<Aside>
+
+Note the singular on __Saving__. There is no such thing as _Daylight Savings Time_.
+
+My toddler loves getting up early. Without blackout curtains, he'd probably get up at 4am in the peak of summer.
+
+</Aside>
+
+These days, <Highlight marker="green">most of the changes to time zones affect when or if daylight saving time is observed by that time zone.</Highlight> For example, in the United States, the [Energy Policy Act of 2005][dst-energy] extended daylight saving time by five weeks in 2007. If you think that's bad, [Argentina][] decides annually if it should observe daylight saving time, and provinces may opt-out of the federal decision.
+
+The <Highlight marker="yellow,bold">daylight saving transition</Highlight> is the clock time lost or gained by observing daylight saving time. For the fall transition when we set the clock backward, if you want to be precise when rendering clock time around these times, you _must_ include some indicator of offset in your display. For example, here in `America/Los_Angeles`, on November 1, 2015, `02:59:00 PDT` is two minutes before `02:01:00 PST`.
+
+_As of this writing_, in 2018 the Spring Daylight Saving Transition (setting the clock forward) is observed:
+
+* __March 11th__ in The USA, Canada, parts of Mexico, Central America, and Thule Air Base in Greenland
+* __March 18th__ at Troll Station, Antarctica
+* __March 23rd__ in Israel
+* __March 24th__ in most of Greenland
+* __March 25th__ in most of Europe, Northern Africa, and Ittoqqortoormiit, Greenland
+* __March 30th__ in Syria
+* __March 31st__ in the Palestinian Territories
+* __April 1st__ in most of Mexico
+* __August 11th__ on Easter Island
+* __August 12th__ in most of Chile
+* __September 30th__ in New Zealand and parts of Antarctica
+* __October 7th__ in Australia
+* __November 4th__ in Brazil
+
+If you want to see the Fall transition back, [check the list][tz-trans-list]. There is a clear takeaway from this list: <Highlight marker="green">DST changes happen regionally.</Highlight> In the United States, the transition happens when the previous clock time reads 2am --- but other countries do this at different times. Brazil transitions at midnight, such that during the _spring forward_ transition there is legally no precise point we typically call midnight.
+
+<Aside>
+
+Another takeaway that often isn't obvious to peoples of the Northern Hemisphere until they stop to think about it: the Southern Hemisphere observes DST during its summer, in the opposite half of the year, so their transition happens in the opposite direction.
+
+</Aside>
+
+If you noted with some dread my use of the phrase _as of this writing_, here's another takeaway: It is impossible to reliably convert a future clock time to UTC in a manner that will remain precise until that moment passes, because the rules for converting that clock time to UTC might change by process of law.
+
+[tz-trans-list]: https://www.timeanddate.com/time/dst/2018.html
+
+A <Highlight marker="yellow,bold">day</Highlight> in civilian terms is the period of time between the earliest point in the day -- most often `00:00:00` -- and the latest point in the day, typically `23:59:59.999` as measured by local clock time.
+
+&#8232;<Highlight marker="green">A day containing a daylight saving transition may contain 23 or 25 hours.</Highlight> Unless you're dealing only with UTC time, you can't just hard-code `86400 seconds` as a [magic number][] and call it a day. Remember -- arithmetic with numbers on dates must be done in UTC. Most people understand that a month is not always 30 days, or that a year is not always 365 days, and they act accordingly. You should not treat days this way, either.
+
+[magic number]: http://c2.com/cgi/wiki?MagicNumber
+
+</Section>
+<Section leadingThought>
+
+Since we often talk about spans of time such as _two weeks from now_, it is useful to talk about some concepts which seem to have different names in every programming library.
+
+&#8232;<Highlight marker="green">Sometimes called a **Range** or an **Interval**</Highlight> is the notion of two precise points in time separated by some distance. For example, when I say that I was on a phone call from _3:05pm to 3:24pm, March 11th, 2018_, I am referring to two precise(-ish) points in time and the span between them.
+
+&#8232;<Highlight marker="green">Sometimes called a **Period** or a **Duration**</Highlight> is the notion of some length of clock time, such as _two hours_, or _five months, two weeks, and six days_. Earlier I said you can only *do arithmetic* on time when in UTC, but you can *do math* with clock time and these lengths. When you juxtapose this length of time to a fixed point in time, by saying something like _I was employed there for three years, until yesterday_ then you can realize that length into a fixed range as described above.
+
+&#8232;<Highlight marker="green">Sometimes called an **Interval** or a **Period**</Highlight> is the notion of some repeating length of clock time, such as a day, a month, or a billing cycle.
+
+If you're working with other people on a project where these concepts are important, it's worth agreeing on and documenting the terms you'll use for these concepts. You can make a strong case for using the same terminology as the library code used by your project, but keep in mind that if you need to coordinate [front][moment]- and [back][joda]-end development, libraries may use different terminology.
+
+[moment]: https://momentjs.com/docs/#/durations/
+[joda]: http://www.joda.org/joda-time/key_period.html
+</Section>
+<Section leadingThought rule>
+
+When I first started this piece some time ago, I planned to lay out some practical tips for solving a few real problems. That kept expanding in scope and belongs in a separate article, which I can hopefully publish soon.
+
+These concepts can be confusing because we often never learn them properly, and they can behave contrary to our expectations. Unless you spend a lot of time working with problems involving time, it can still be confusing. I didn't even touch on the many, many problems that occur with the behavior of computers dealing with time in a distributed system.
+
+Since my referenced tweet over five years ago, I've built scheduling, reporting, and query systems involving complex time manipulations. Each of these projects required me to improve my understanding of working with time as both humans and computers understand it. I still double-check myself often to make sure I understand what I want to accomplish.
+
+What I don't do anymore is complain about how hard the problem is. Dealing with it is part of the job, and understanding what I'm dealing with helps avoid frustration.
+
+</Section>
+<Footer>
+<FooterSection title="Further Reading">
+<FurtherReading
+    title="Falsehoods Programers Believe About Time"
+    href="http://infiniteundo.com/post/25326999628/falsehoods-programmers-believe-about-time">
+
+Read this once, twice, and a third time. Then come back a week later and read it again.
+
+</FurtherReading>
+<FurtherReading
+    title="Your Calendrical Fallacy Is..."
+    href="http://yourcalendricalfallacyis.com/">
+
+And if you haven't learned those lessons *yet*
+
+> This leads to some interesting questions: If a user has set an alarm to wake up at 1 AM on that day, what happens? Does the alarm go off the hour after the midnight hour? Or does it go off during the hour before 2 AM? Or does it go off twice? Or do you just give up and not make the alarm go off at all and make your users miss their dead-of-night appointment?
+
+</FurtherReading>
+<FurtherReading
+    title="Time zone news"
+    href="https://time.is/time_zone_news">
+
+Worth sticking in your RSS reader, if just to follow along with the continuing craziness.
+
+</FurtherReading>
+<FurtherReading
+    title="A Brief History of (Modern) Time"
+    href="https://www.theatlantic.com/technology/archive/2015/12/the-creation-of-modern-time/421419/">
+
+> Time reform offers a startling, deeply relevant explanation of how technological change happens.
+
+</FurtherReading>
+<FurtherReading
+    title="The Radical Plan To Destroy Time Zones"
+    href="https://www.washingtonpost.com/news/worldviews/wp/2016/02/12/the-radical-plan-to-destroy-time-zones-2/">
+
+If you thought my dystopian story in the second section sounded like utopia, you're going to love this. These guys sound like tech bros to me, but if it's your cup of tea...
+
+> It is ONE issue, and should be implemented world wide, all at once, on 2018 January 1 Monday. One common standard, world wide, overlaid with local and religious calendars as people want, no problem!
+
+</FurtherReading>
+</FooterSection>
+<FooterSection title="Corrections">
+<Correction date="March 14th, 2018">
+
+I originally stated the entirety of North America writes the date `3/31/2018`, but it's only the United States. Deepest apologies to my Canadian and Mexican colleagues, who write the date `31/3/2018` like the rest of the world. Both formats are backward. Dates should really be written `2018/03/31`.
+
+</Correction>
+<Correction date="March 15th, 2018">
+
+In addition to fixing several typos and clarifying a few sentences, I added a paragraph to the section on Daylight Saving Transitions about the difficulties with converting future clock times to UTC time.
+
+</Correction>
+</FooterSection>
+<Colophon {...props.colophon} />
+</Footer>

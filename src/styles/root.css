@@ -37,10 +37,12 @@
     --color-fg-xx: var(--gry-3);
     --color-fg-xxx: var(--gry-4);
     --color-link: var(--red-4);
+
     --highlight-fg-yellow: var(--yel-0);
     --highlight-bg-yellow: var(--yel-9);
     --highlight-fg-green: var(--grn-0);
     --highlight-bg-green: var(--grn-9);
+
     --color-bg-blue: var(--blu-9);
   }
 }

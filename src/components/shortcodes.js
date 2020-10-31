@@ -6,11 +6,13 @@ import CodeEmbed from './code-embed'
 import CodeExample from './code-example'
 import CodeHighlight from './code-highlight'
 import Colophon from './colophon'
+import Correction from './corrections'
 import Footer from './footer'
 import HeaderBanner from  './header_banner'
 import HeaderPlain from './header_plain'
 import Highlight from './highlight'
 import NewThought from './new_thought'
+import Quote from './quote'
 import Section from './section'
 import Slide from './slide'
 import Tabs from './tabs'
@@ -33,6 +35,7 @@ export default {
     CodeExample,
     CodeHighlight,
     Colophon,
+    Correction,
     Footer,
     FooterSection: Footer.Section,
     FurtherReading: Footer.FurtherReading,
@@ -41,6 +44,7 @@ export default {
     Highlight,
     Img,
     NewThought,
+    Quote,
     Section,
     Slide,
     Tabs,

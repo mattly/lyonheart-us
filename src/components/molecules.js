@@ -34,8 +34,10 @@ type.LeadingThought = {
 
 export const spacing = {
   smX: "0.5rem",
+  sm1: "0.5rem",
   sm: "0.75rem",
   md: "1rem",
+  lg: "1.5rem",
   lg1: "2rem",
 }
 

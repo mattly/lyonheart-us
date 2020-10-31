@@ -50,7 +50,8 @@ const Section = styled.section(
         display: 'block',
         content: '" "',
         marginTop: '-1px',
-        borderTop: '1px dotted'
+        borderTop: '1px dotted',
+        marginBottom: spacing.sm,
       }
     }
     return {
