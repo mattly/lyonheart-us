@@ -16,7 +16,11 @@ exports.onCreateNode = ({ node, actions, getNode, ...rest }) => {
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
-  const result = await graphql(`query { allMdx { edges { node { id fields { category path }}}}}`)
+  const result = await graphql(`query { allMdx { edges { node {
+    id
+    frontmatter { title date direct }
+    fields { category path }
+  }}}}`)
   if (result.errors) {
     reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query')
   }
@@ -24,7 +28,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     createPage({
       path: node.fields.path,
       component: path.resolve(`./src/components/${node.fields.category}_template.js`),
-      context: { id: node.id },
+      context: { id: node.id, ...node.fields, ...node.frontmatter },
     })
   })
 }

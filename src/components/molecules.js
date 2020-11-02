@@ -56,6 +56,7 @@ export const box = {
         tiny: '0.25rem',
         med: '0.5rem',
         large: '1rem',
+        xlarge: '2rem',
     }
 }
 
@@ -65,6 +66,10 @@ export const prefersDark = `@media (prefers-color-scheme: dark)`
 export const column = {
   fullBleed: {
     gridColumn: "1 / -1",
+  },
+  narrow: {
+    ...colBase,
+    gridTemplateColumns: centerCol("26rem"),
   },
   main: {
     ...colBase,
