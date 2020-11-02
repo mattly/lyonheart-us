@@ -47,8 +47,28 @@ module.exports = {
         // icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    plugin(`gatsby-plugin-feed`, {
+      query: `{ site { siteMetadata { title description siteUrl }}}`,
+      feeds: [
+        {
+          title: "Recent Content",
+          output: "/index.xml",
+          query: `{
+            allMdx(sort:{ order: DESC, fields: ["frontmatter___date"]}) {
+              nodes {
+                frontmatter { title date }
+                fields { path }
+              }
+            }
+          }`,
+          serialize: ({ query: { site, allMdx } }) => allMdx.nodes.map(node => ({
+            date: node.frontmatter.date,
+            url: site.siteMetadata.siteUrl + node.fields.path,
+            guid: site.siteMetadata.siteUrl + node.fields.path,
+            description: node.title,
+          }))
+        }
+      ],
+    })
   ],
 }
