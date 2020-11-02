@@ -4,7 +4,16 @@ import styled from '@emotion/styled'
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { column, spacing, box, type } from '../components/molecules'
+import { column, spacing, box, type, underlinedLink } from '../components/molecules'
+import bannerImg from '../assets/home-banner.jpg'
+
+const Banner = styled.div({
+  backgroundImage: `url(${bannerImg})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  height: '600px',
+  margin: '0 -10vw -365px'
+})
 
 const Home = styled.div({
   ...column.narrow,
@@ -14,6 +23,11 @@ const HomeInner = styled.div({
   margin: `0 calc(-1 * ${spacing.lg})`,
   padding: spacing.lg,
   borderRadius: box.radius.xlarge,
+})
+
+const HelloSection = styled.section({
+  fontSize: type.lg1,
+  a: underlinedLink,
 })
 
 const ListSection = styled.section({
@@ -45,8 +59,17 @@ const IndexPage = ({data}) => {
   return (
     <Layout width="narrow">
       <SEO title="Home" />
+      <Banner />
       <Home>
         <HomeInner>
+          <HelloSection>
+            <p>
+              Matthew Lyon is making <a href="https://github.com/mattly">software</a>,
+              visual art,
+              music,
+              and writing.
+            </p>
+          </HelloSection>
           <ListSection>
             <h2>Essays</h2>
             {articles.nodes.map(article => (
