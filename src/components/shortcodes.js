@@ -11,6 +11,7 @@ import Footer from './footer'
 import HeaderBanner from  './header_banner'
 import HeaderPlain from './header_plain'
 import Highlight from './highlight'
+import Math from './math'
 import NewThought from './new_thought'
 import Quote from './quote'
 import Section from './section'
@@ -43,6 +44,7 @@ export default {
     HeaderPlain,
     Highlight,
     Img,
+    Math,
     NewThought,
     Quote,
     Section,
