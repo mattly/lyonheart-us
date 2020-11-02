@@ -1,7 +1,7 @@
 import React  from 'react'
 import styled from '@emotion/styled'
 
-import { type, spacing } from './molecules'
+import { type, spacing, asideContainer } from './molecules'
 
 const Footer = styled.footer({
   marginTop: spacing.md,
@@ -16,7 +16,18 @@ const Footer = styled.footer({
 
 
 const FooterSection = styled.section({
-})
+  display: 'grid',
+  columnGap: spacing.md,
+
+  lineHeight: type.leading.short,
+  marginBottom: spacing.md,
+  'p': {
+    marginTop: 0,
+  },
+}, ({ hasAsides }) => ({
+  ...(hasAsides && asideContainer),
+}))
+
 const FooterSectionTitle = styled.h2({
   margin: 0,
   marginBottom: spacing.sm,
@@ -26,19 +37,14 @@ const FooterSectionTitle = styled.h2({
   textTransform: 'uppercase',
 })
 
-Footer.Section = ({ title, children }) => (
-  <FooterSection>
+Footer.Section = ({ title, hasAsides, children }) => (
+  <FooterSection hasAsides={hasAsides}>
     <FooterSectionTitle>{title}</FooterSectionTitle>
     {children}
   </FooterSection>
 )
 
 const FurtherReading = styled.div({
-  lineHeight: type.leading.short,
-  marginBottom: spacing.md,
-  'p': {
-    marginTop: 0,
-  },
   'blockquote': {
     margin: 0,
     marginBottom: spacing.sm,

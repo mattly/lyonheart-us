@@ -14,6 +14,254 @@ I gave this talk at [Write the Docs North America 2014](http://conf.writethedocs
 <HeaderPlain title={props.title} />
 <Section>
 <Slide slide={props.slides['slides/slide-01.jpeg']}>
+
 Hi! I also answer to "mattly" in person. I'm a developer, I have built and launched a few products now, and I led the development of the most recent one of those. I want to talk to you today about what I think the role of documentation in product development is, and I hope to provide you with some tools for getting involved earlier in the development process.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-02.jpeg']}>
+
+There is a movement going on in product development called "Minimum Viable Product." It's an interesting idea, you'll hear the term get thrown around a lot. Sometimes it means what is the simplest thing that we can do to gauge the demand for what we're going to build. Sometimes that's just a sign-up form.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-03.jpeg']}>
+
+What I believe it comes down to though is, building software is expensive and there's a lot of risks to it. Those of you who are here in Oregon are probably familiar with the Cover Oregon website for the Affordable Care Act, which the state has spent a lot of money on, and they're declaring it a failure and going back to using the healthcare dot gov website.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-04.jpeg']}>
+
+Building software is hard, and this is a process for managing the risk. You want to test the feasibility of your idea and determine is it worth sinking more money into? Is it worth sinking more resources into? Even if you're not spending money on it, even if it's just your time, there's still have the opportunity cost.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-05.jpeg']}>
+
+To determine if you're building the right thing, you really want to just get your crappy first draft out there early. You want to build as little as possible, and unfortunatley a lot of things get cut to the bone. Documentation is one of the first things to go, I think because a lot of project managers don't understand how it's valuable. I want to help you change that.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-06.jpeg']}>
+
+There's a narrow point between building too much and risking more than you need to, and building too little, where maybe it wasn't really enough to prove the idea was feasible in the first place.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-07.jpeg']}>
+
+But a core component of the philosophy is to rely on early adopters to pick up the slack for you. But I don't think early adopters are necessarily the best target user for a lot of types of products. How many people know techies who use Pinterest? I'm the only one I know of, and yet it's something a lot of my non-technical friends and family use for a lot of things.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-08.jpeg']}>
+
+Early adopters also can have misguided reactions to a lot of things. When the iPod was first announced, Slashdot's reaction really mirrored the success of the product. Early adopters often have these biases that might not fit in with what your vision is. Sometimes you need to have faith in that vision.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-09.jpeg']}>
+
+So I'd like to back up a second, and ask, "What is the purpose of software?" Other than cynically getting rich from selling out.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-10.jpeg']}>
+
+I believe software is something to help people solve problems. Maybe that problem is they're bored and they want to be entertained, maybe the something faster or they want to save money. But I believe that all software is created for the purpose of helping people solve problems of one kind or another.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-11.jpeg']}>
+
+And, it has to work better than whatever it is they're currently using. I don't care how good your todo list app is, it can't beat my index cards and pen. I use whiteboards a lot, I use sticky notes a lot, and this is something that for me, software just can't touch because the alternative is so much better. My wife is great with spreadsheets and can dance circles around me with them for certain classes of problems, and I wrangle databases for a living. I'm in awe of her for that. And she's never needed a database.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-12.jpeg']}>
+
+And with Cover Oregon, it came down to for me, sometimes printing a form out and going to a place with a fax machine is a better experience and less hassle than what you can spend 200 million dollars building.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-13.jpeg']}>
+
+There's a whole field of study on how we help people solve problems called User Experience, and I believe documentation fits into that.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-14.jpeg']}>
+
+Unfortunately I think a lot of people tend to think of documentation as a sort of safety net for your user experience and I don't think that's a healthy relationship.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-15.jpeg']}>
+
+One of the things that we do in the development process is create these personas, it helps us understand who our users are and what they want to do, and hopefully what they're actually trying to accomplish by doing that. It helps us keep in mind that our end goal is about empowering people. But unfortunately by the time they have to go hunting for documentation you're not empowering them anymore.
+
+This is one of the reasons why with games, for example, where you're solving the boredom problem, the onboarding process has become how you teach them to play the game, the documentation is integrated into the game itself.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-16.jpeg']}>
+
+A lot of that comes down to empathy. You have to get into the head of whoever it is you're building the software for, and unfortunatley this isn't really a core skill of people who deal with software for a living. It should be, but it isn't. They're focused on the bottom line, they're focused on making their logic work.
+
+I do a lot of family tech support, I help my parents out with whatever they might need help with on their computer. I try to think of them. I try to think of myself before I have coffee in the morning: okay, I'm not at my best at that point.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-17.jpeg']}>
+
+I don't necessarily want to slog through really convoluted user interfaces, and the whole of user interfaces are built on this really loose gramar of iconography, pithy language, and conventions. If you're building a very small, greenfield project you're not going to have as many features, but interfaces are still about manipulating abstractions.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-18.jpeg']}>
+
+If you don't speak that language, if you don't have a very strong grasp on those conventions and iconography, you're going to have a very difficult time understanding that interface. If you think about the evolution of iconography, it used to be that the save icon was a floppy disk. Or you look at the variation of icons that are used in apps today to represent "create somethng new", or "search for something", and these are all conventions.
+
+Unless you're really immersed in that culture it can be difficult to address that problem. You don't necessarily understand how difficult it is for people who aren't immersed in it to understand that, for example, an icon of a magnifying glass means "find" instead of "zoom in" because of the context.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-19.jpeg']}>
+
+I believe writers are very well equipped to deal with this problem, particularly tech writers. I think a core skill of writing is to figure out how other people are going to interpret what you're saying. I know a few people in the legal profession, We've have conversations about the how a core skill of legal writing which is similar to a core skill of programming. You want to write something such that it carries the intent across with very little room for misinterpretation. Or maybe you don't, maybe you *want* that ambiguity.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-20.jpeg']}>
+
+I want to take an aside here before continuing and talk about some ways that developers are using empathy to help themselves.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-21.jpeg']}>
+
+I think it's worth looking at because good developers are very attuned to things that make their lives more difficult. They don't like getting bug reports they don't understand, they don't like being woken up at 3am because somethng broke.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-22.jpeg']}>
+
+Test suites and regression tests has gained a lot of popularity because it allows developers to say with confidence, "I haven't broken anything with my new changes." But tests can only explain the *what* broke, they don't explain the _how_, they don't explain the _why_.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-23.jpeg']}>
+
+Developers also use source control, and I have a whole thing I could get into about code archaeology and digging through past commits to determine why something was created a particular way, to reconstruct what happened. However, commits also only show the _what_, unless the developers have good hygiene around writing commit messages. And I'm as guilty as anyone of ignoring that.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-24.jpeg']}>
+
+It's incredibly useful to capture the context for why a particular thorny, difficult problem is thorny and difficult, and why the chosen solution was chosen. If you have a good test and source control hygiene around your product, document the _why_ on smelly code. Maybe spend some minutes capturing some notes on what an idea solution would look like. The knowledge is forgotten as other things are shovelled on top of the code, or other new shiny things come along, and most people have terrible memories.
+
+Spending five to ten minutes now writing down why something is convoluted or complex saves a lot of time later. If you're trying to figure out, "why is this hundred-line method so _weird_?" having a little bit of context goes a long way.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-25.jpeg']}>
+
+Another way I think a writer could help developers is to pair with new people as they come onboard -- someone said something about this earlier and it's so true -- onboarding new developers can take about a month, and documentation really helps reduce that a lot.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-26.jpeg']}>
+
+Getting back to product development: For a new product, you don't have experts. You have people who are approaching something new and curious and they want to kick the tires and answer the question, "how will this make my life easier?" But you as someone working on the product aren't easily going to be able to identify with that position. Some of the early-adopter types are quick to pick up on new ideas, but will your target audience be able to do that?
+
+</Slide>
+<Slide slide={props.slides['slides/slide-27.jpeg']}>
+
+In the development world we have man pages. And I think man pages are an example of bad documentation for teaching people how to do something. They're great reference documentation, but they're obtuse, they're difficult, and really I think reference documents are more of an outboard memory.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-28.jpeg']}>
+
+They're for people who are already familiar with something or who need to refresh their knowledge of how something works or maybe need to polish up a bit. And don't get me wrong: if you're building an API you absolutely need reference documents, it's not an option. Don't use what I just said as an excuse to say, "We don't need reference docs for our API!" because you do.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-29.jpeg']}>
+
+The format is great for _reminding_ people about things they already know, but it's just bad for teaching people about things. It's bad for teaching newcomers how to use your software.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-30.jpeg']}>
+
+So you need to learn how to forget what it is like to be an expert user of your own product. It's really hard to understand what it's like to have fresh eyes, when evaluating anything: user experience, code, your documentation, et cetera, you have to come at it from a perspective of, you know nothing.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-31.jpeg']}>
+
+Geek world we have some tools for doing this: role-playing games. If you have personas, maybe consider going through role-playing sessions from the perspective of people who are going to interpret things differently. If I'm writing something aimed at people similar to my parents in terms of technical capabilities, I actually have a pretty good mental model now of how my father approaches user interfaces. I try to come at it from that perspective.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-32.jpeg']}>
+
+But I do think there is a really good format for helping people learn how to do something. Often just a very specific task, but that's generally what people are trying to accomplish, specific tasks. This format has been around for a long time, and I think they're often undersold, but
+
+</Slide>
+<Slide slide={props.slides['slides/slide-33.jpeg']}>
+
+it's the HOWTO document, and I believe that for the time put in, they are the biggest bang for the buck in terms of getting somebody to go from zero to hero. I have time and again seen the power of these documents to to help normal people to do things they're not experts at.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-34.jpeg']}>
+
+Especially with things outside software. When my wife and I moved into a new apartment, we decided not to buy any more IKEA furniture, so we go to websites that teach us how to build furniture, and it's a HOWTO on building a shelf.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-35.jpeg']}>
+
+I'm a terrible gardener, I've managed to kill mint. And I'm a terrible cook, but cook books are giant HOWTO tomes of, "how do I make a pizza?" or "how do I cook burgers enough to not kill myself?"
+
+</Slide>
+<Slide slide={props.slides['slides/slide-36.jpeg']}>
+
+The cookbook format is popular with developers as well. I think it's migrating from books to blogs, but I want to take a little bit more time to sell them up to you because I believe that howtos work with User Experience design.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-37.jpeg']}>
+
+If you write a HOWTO thoroughly, they will objectively document the experience. You look at them from the perspective of somebody who's not familiar with all that interface cruft, you have to say, "okay, you're looking for a button that's underneath the toolbar with some scissors on it" and you're using words, not necessarily screenshots, it helps you understand that maybe your interface is a bit convoluted or confusing.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-38.jpeg']}>
+
+And maybe your process for doing something is a little bit too confusing. Honestly I think one of the best ways to use HOWTOs is to link to them from your marketing materials. If you're selling your product, saying you can do something, show me how easy it is.
+
+I had an experience lately after heartbleed of moving a lot of my friends and family onto password managers. One of those in particular we were trying to setup some sort of syncing type thing, and it took fifteen minutes of digging through their help system before I came up with an actual HOWTO on, "how do I share a password with somebody?"  This is one of their core promoted features on their marketing site, it's the main value proposition for me, and here I have to digging to understand how to do it. And it was not obvious at all. It should have been linked from their sales materials, but instead I have to go digging.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-39.jpeg']}>
+
+Link to your HOWTOS from your new user onboarding. If you have any kind of key performance indicator, we want people to create whatever thing you're measuring success with, write HOWTOs on those and track them. As one of the lightning talks speakers said earlier, if you have uncommon actions that are just buried in a junk drawer screen, that maybe need to be done every now and then, but you get a lot of support questions on, HOWTOs are a great way to help people with that.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-40.jpeg']}>
+
+There's also the concept of User Experience regressions, where, if you're moving quickly and you're trying to keep the state of the program in your head, as developers, as designers, as user experience people or whatever, you're going to break something eventually. When that happens you get customer support issues, you get people complaining on twitter, and it's horrible. Having HOWTOs for your customers can help with that as part of the QA process. They can help catch these sorts of problems, and they can communicate changes to customers. If you were to use something like Mechanical Turk which is an Amazon service for having actual people do things, maybe you can catch these sorts of things before they become huge problems.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-41.jpeg']}>
+
+There's also a concept of user experience debt, and if you keep your HOWTOs up-to-date with the product decisions that are made, where perhaps you don't necessarily know how to make a good experience for a particular process yet, and the HOWTO is becoming really long. Maybe that will help you realize, it's time to actually spend some time fixing it now, instead of continuing to punt on the design.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-42.jpeg']}>
+
+I believe there's also a way for writers to be more proactive in the product development process as well, there's room for them to be leaders even.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-43.jpeg']}>
+
+Again, visiting what developers do, some of us started writing our tests first, and then write the code to pass those tests. It's a bit controversial right now, but the theory is that by thinking about what success looks like and what failure looks like _first_, you end up with a better result.
+
+</Slide>
+<Slide slide={props.slides['slides/slide-44.jpeg']}>
+
+I think that if you were to thoroughly document what a user experience would look like before you start building it, you can save a lot of time, avoid a lot of weird clairy issues. Instead of hand-waving away things that you think are obvious, if you challenge assumptions and learn a little bit about UX design, you can help the product and development teams avoid the sorts of sandtraps they get into by not thinking things through thoroughly. You have room to be leaders in this area. Thank you.
+
 </Slide>
 </Section>
+<Footer>
+<FooterSection title="Further Reading">
+<FurtherReading
+  title="Science Fiction and Design"
+  href="https://medium.com/hackerpreneur-magazine/science-fiction-and-design-866178c1739e"
+>
+
+(and [video](https://vimeo.com/137884087)) -- I had the pleasure of watching [Jesse Kriss](https://jklabs.net/) give this talk at [Eyeo Festival](http://eyeofestival.com/) in 2015. He talks about a project at JPL, working with Microsoft, that really takes the notion of writing out your experience first as fiction and slowly turning into reality.
+
+</FurtherReading>
+</FooterSection>
+<FooterSection title="Bonus Sloths" hasAsides>
+
+People have requested high-res versions of my sloth characters. <a href={props.siblings['sloths.zip'].publicURL}>Here they are!  (1.3MB)</a>. They are distributed with the same CC license as this webpage, described below.
+
+<Aside>
+<img src={props.siblings['sloths.png'].publicURL} width="180" height="45" />
+</Aside>
+</FooterSection>
+<Colophon {...props.colophon} />
+</Footer>
