@@ -8,11 +8,18 @@ module.exports = {
     title: `lyonheart`,
     description: `the personal site of Matthew Lyon`,
     author: `Matthew Lyon`,
+    siteUrl: `https://lyonheart.us`,
     footerLinks: [
       link('mailto:matthew@lyonheart.us', 'matthew@lyonheart.us', "humans welcome to email me"),
       link('https://twitter.com/mattly', '@mattly', "tweeting/bleating"),
       link('https://github.com/mattly', 'github/mattly', "code wasteland"),
-    ]
+    ],
+    facebook: {
+      admins: '100001660299232'
+    },
+    twitter: {
+      site: '@mattly'
+    }
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

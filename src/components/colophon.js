@@ -36,7 +36,7 @@ const Colophon = ({ title, path, siteUrl, author, humanDate, machineDate, render
   <Section>
     <h2>Colophon</h2>
     <p>
-      <a href={`${siteUrl}${path}`}>{title}</a> was first published by <a href={siteUrl}>{author}</a> on <time datetime={machineDate}>{humanDate}</time>.
+      <a href={`${siteUrl}${path}`}>{title}</a> was first published by <a href={siteUrl}>{author}</a> on <time dateTime={machineDate}>{humanDate}</time>.
       All images (where applicable, unless otherwise noted) and text &copy; {author} {renderYear}.
       It is published under the {ccLink}.
       If you wish to reproduce any of this content in a commercial context, explicit permission is required.

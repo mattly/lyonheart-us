@@ -1,4 +1,5 @@
 import React from "react"
+import {Helmet} from 'react-helmet'
 import { graphql } from "gatsby"
 import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
@@ -75,13 +76,37 @@ export default function ArticleTemplate({ data: { mdx, site } }) {
   const colophon = {
     title: mdx.frontmatter.title,
     path: mdx.fields.path,
-    siteUrl: ``,
+    siteUrl: site.meta.siteUrl,
     renderYear: site.renderYear,
     humanDate: mdx.frontmatter.humanDate,
     machineDate: mdx.frontmatter.machineDate,
   }
+  const cardImg = mdx.frontmatter.banner ?
+    (<Helmet>
+      <meta property="og:image" content={`${site.meta.siteUrl}${mdx.frontmatter.banner.img.lg.src}`} />
+      <meta property="twitter:image" content={`${site.meta.siteUrl}${mdx.frontmatter.banner.img.lg.src}`} />
+      <meta property="twitter:card" content="summary_large_image" />
+    </Helmet>) : (<Helmet>
+      <meta property="twitter:card" content="summary" />
+    </Helmet>)
+
   return (
     <Layout width={width}>
+      <Helmet>
+        <title>{mdx.frontmatter.title} • {site.meta.author}</title>
+        <meta property="og:title" content={mdx.frontmatter.title} />
+        <meta property="og:description" content={mdx.frontmatter.subtitle} />
+        <meta property="og:url" content={`${"siteurl"}${mdx.fields.path}`} />
+        <meta property="og:site_name" content={`${site.meta.title}`} />
+        <meta property="og:locale" content="en-us" />
+        <meta property="article:published_time" content={`${mdx.frontmatter.machineDate}`} />
+        <meta property="fb:admins" content={`${site.meta.facebook.admins}`} />
+        <meta property="twitter:site" content={`${site.meta.twitter.site}`} />
+        <meta property="twitter:creator" content={`${site.meta.twitter.site}`} />
+        <meta property="twitter:title" content={`${mdx.frontmatter.title}`} />
+        <meta property="twitter:description" content={`${mdx.frontmatter.subtitle}`} />
+      </Helmet>
+      {cardImg}
       <Article width={width} className={articleClass}>
         <MDXProvider components={shortcodes}>
           <MDXRenderer {...mdx} {...mdx.frontmatter} siblings={siblings} colophon={colophon}>
@@ -122,6 +147,13 @@ export const pageQuery = graphql`
       host
       port
       renderYear: buildTime(formatString: "YYYY")
+      meta: siteMetadata {
+        title
+        author
+        siteUrl
+        facebook { admins }
+        twitter { site }
+      }
     }
     mdx(id: { eq: $id }) {
       body

@@ -19,7 +19,7 @@ const Masthead = styled.div({
   left: 0,
   right: 0,
   color: "var(--color-fg-title)",
-  textShadow: "var(--color-fg-title-shadow)",
+  textShadow: "2px 2px 4px var(--color-fg-title-shadow)",
 })
 const Title = styled.h1({
   marginTop: 0,

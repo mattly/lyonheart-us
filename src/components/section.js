@@ -3,11 +3,6 @@ import styled from "@emotion/styled"
 
 import { spacing, asideContainer, type } from "./molecules"
 
-const breaks = {
-  rule: {
-  },
-}
-
 const Section = styled.section(
   {
     display: "grid",
