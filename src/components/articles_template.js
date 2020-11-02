@@ -144,8 +144,6 @@ export default function ArticleTemplate({ data: { mdx, site } }) {
 export const pageQuery = graphql`
   query Article($id: String) {
     site {
-      host
-      port
       renderYear: buildTime(formatString: "YYYY")
       meta: siteMetadata {
         title

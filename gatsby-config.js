@@ -54,9 +54,9 @@ module.exports = {
           title: "Recent Content",
           output: "/index.xml",
           query: `{
-            allMdx(sort:{ order: DESC, fields: ["frontmatter___date"]}) {
+            allMdx(sort:{ order: DESC, fields: [frontmatter___date]}) {
               nodes {
-                frontmatter { title date }
+                frontmatter { title subtitle date }
                 fields { path }
               }
             }
@@ -65,7 +65,8 @@ module.exports = {
             date: node.frontmatter.date,
             url: site.siteMetadata.siteUrl + node.fields.path,
             guid: site.siteMetadata.siteUrl + node.fields.path,
-            description: node.title,
+            title: node.frontmatter.title,
+            description: node.frontmatter.subtitle
           }))
         }
       ],
