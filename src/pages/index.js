@@ -12,7 +12,7 @@ const Banner = styled.div({
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
   height: '600px',
-  margin: '0 -10vw -365px'
+  margin: '0 0 -365px',
 })
 
 const Home = styled.div({
@@ -27,6 +27,7 @@ const HomeInner = styled.div({
 
 const HelloSection = styled.section({
   fontSize: type.lg1,
+  p: { marginTop: 0 },
   a: underlinedLink,
 })
 

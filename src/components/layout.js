@@ -44,6 +44,10 @@ const Copyright = styled.p({
   }
 })
 
+const Main = styled.main({
+  position: 'relative',
+})
+
 const Layout = ({ children, width }) => {
   const { site } = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -74,7 +78,7 @@ const Layout = ({ children, width }) => {
           body: { margin: 0 },
         }}
       />
-      <main>{children}</main>
+      <Main>{children}</Main>
       <SiteFooter width={width}>
         <FooterLinks>
           {site.meta.footerLinks.map(({ href, text, title }) => (
