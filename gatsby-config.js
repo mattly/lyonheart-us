@@ -29,6 +29,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     plugin(`gatsby-plugin-mdx`, {
       gatsbyRemarkPlugins: [
+        plugin(`gatsby-remark-smartypants`, { dashes: 'oldschool' }),
         `gatsby-remark-images`,
         `gatsby-remark-rewrite-relative-links`,
       ]
