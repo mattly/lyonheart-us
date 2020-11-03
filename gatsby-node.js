@@ -9,8 +9,12 @@ exports.onCreateNode = ({ node, actions, getNode, ...rest }) => {
     const slug = createFilePath({ node, getNode })
     const parent = getNode(node.parent)
     const category = parent.sourceInstanceName
+    let path = `/${category}${slug}`
+    if (category == "now") {
+      path = `/now`
+    }
     createNodeField({ name: "category", node, value: category })
-    createNodeField({ name: "path", node, value: `/${category}${slug}` })
+    createNodeField({ name: "path", node, value: path })
   }
 }
 

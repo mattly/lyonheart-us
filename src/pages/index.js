@@ -70,6 +70,7 @@ const IndexPage = ({data}) => {
               music,
               and writing.
             </p>
+            <p>A bit about what I'm up to <Link to="/now">Now</Link></p>
           </HelloSection>
           <ListSection>
             <h2>Essays</h2>

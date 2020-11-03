@@ -25,6 +25,7 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     fileSource(`articles`, `/articles`),
     fileSource(`talks`, `/content/talks`),
+    fileSource(`now`, `/content/now`),
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     plugin(`gatsby-plugin-mdx`, {
