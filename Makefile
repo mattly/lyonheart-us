@@ -1,12 +1,19 @@
+dev:
+	gatsby develop
+
 clean:
 	rm -rf public
 
-deploy: clean
+build:
 	gatsby build
-	s3deploy \
+
+run-deploy:
+	../s3deploy \
  		-bucket lyonheart-us \
  		-region us-east-1 \
  		-distribution-id E3NC727W0A985S \
  		-source public
 
-.PHONY: clean dev deploy setup
+deploy: clean build run-deploy
+
+.PHONY: clean deploy run-deploy
