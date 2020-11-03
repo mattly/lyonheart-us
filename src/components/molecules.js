@@ -91,5 +91,8 @@ export const asideContainer = {
 
 export const underlinedLink = {
   color: 'inherit',
-  textDecoration: 'underline var(--color-local-link) solid 2px',
+  textDecoration: 'underline',
+  textDecorationColor: 'var(--color-local-link)',
+  textDecorationStyle: 'solid',
+  textDecorationThickness: '2px',
 }
