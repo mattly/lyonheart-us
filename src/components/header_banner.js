@@ -12,6 +12,7 @@ const Header = styled.header({
   overflow: "hidden",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
+  backgroundColor: `var(--gry-8)`,
 })
 const Masthead = styled.div({
   ...column.wide,
