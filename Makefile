@@ -1,10 +1,10 @@
-dev:
+dev: clean
 	gatsby develop
 
 clean:
-	rm -rf public
+	gatsby clean
 
-build:
+build: clean
 	gatsby build
 
 run-deploy:
@@ -14,6 +14,6 @@ run-deploy:
  		-distribution-id E3NC727W0A985S \
  		-source public
 
-deploy: clean build run-deploy
+deploy: build run-deploy
 
 .PHONY: clean deploy run-deploy
