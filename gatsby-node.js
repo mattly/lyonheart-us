@@ -29,10 +29,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query')
   }
   result.data.allMdx.edges.forEach(({ node }) => {
+    const { path: nodePath, ...fields } = node.fields
     createPage({
-      path: node.fields.path,
+      path: nodePath,
       component: path.resolve(`./src/components/${node.fields.category}_template.js`),
-      context: { id: node.id, ...node.fields, ...node.frontmatter },
+      context: { id: node.id, ...fields, ...node.frontmatter },
     })
   })
 }
