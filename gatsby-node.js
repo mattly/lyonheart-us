@@ -30,9 +30,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
   result.data.allMdx.edges.forEach(({ node }) => {
     const { path: nodePath, ...fields } = node.fields
+    let component = `./src/components/${node.fields.category}_template.js`
+    if (node.fields.category === "perspectives") {
+      component = `./src/content/${nodePath}/template.js`
+    }
     createPage({
       path: nodePath,
-      component: path.resolve(`./src/components/${node.fields.category}_template.js`),
+      component: path.resolve(component),
       context: { id: node.id, ...fields, ...node.frontmatter },
     })
   })

@@ -30,7 +30,8 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
-    "react-katex": "^2.0.2"
+    "react-katex": "^2.0.2",
+    "tsv": "^0.2.0"
   },
   "devDependencies": {
     "prettier": "2.1.2"

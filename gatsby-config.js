@@ -26,6 +26,7 @@ module.exports = {
     fileSource(`articles`, `/articles`),
     fileSource(`talks`, `/content/talks`),
     fileSource(`now`, `/content/now`),
+    fileSource(`perspectives`, `/content/perspectives`),
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     plugin(`gatsby-plugin-mdx`, {
