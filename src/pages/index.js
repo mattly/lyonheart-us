@@ -66,11 +66,10 @@ const IndexPage = ({data}) => {
           <HelloSection>
             <p>
               Matthew Lyon is making <a href="https://github.com/mattly">software</a>,
-              visual art,
-              music,
+              visual art, <a href="https://soundcloud.com/matthewlyonheart">music</a>,
               and writing.
             </p>
-            <p>A bit about what I'm up to <Link to="/now">Now</Link></p>
+            <p>A bit about what I'm up to <Link to="/now">now</Link></p>
           </HelloSection>
           <ListSection>
             <h2>Essays</h2>
