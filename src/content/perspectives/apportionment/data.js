@@ -78,11 +78,15 @@ const reconciler = (siblings) => {
     const allTotal = v.map(r => r.total)
     const free = v.map(r => r.free)
     const representedFree = v.filter(r => r.represented).map(r => r.free)
+    const unrepresentedFree = v.filter(r => !r.represented).map(r => r.free)
+    const enslaved = v.map(r => r.enslaved)
     return ({
       allSum: sum(allTotal),
       allMax: max(allTotal),
       freeSum: sum(free),
       repFreeSum: sum(representedFree),
+      unrepFreeSum: sum(unrepresentedFree),
+      enslavedSum: sum(enslaved),
     })
   }, r => r.year)
 

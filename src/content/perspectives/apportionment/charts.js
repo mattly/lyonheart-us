@@ -217,7 +217,7 @@ export const Chart1 = ({ data }) => {
 }
 
 const representedColors = [
-  "gry-5", "gry-7"
+  "gry-4", "gry-6"
 ]
 
 export const Chart2 = ({ data }) => {
@@ -231,21 +231,44 @@ export const Chart2 = ({ data }) => {
     <Container>
       <svg width="1000" height={bodyHeight}>
         {years.map((year, yi) => {
-          const { repFreeSum } = data.byCensus.get(year)
+          const { repFreeSum, enslavedSum, unrepFreeSum } = data.byCensus.get(year)
           const xScale = scaleLinear().domain([0, repFreeSum]).range([0,500])
-          let census = data.population.filter(d => d.year === year && d.total > 0)
+          let census = data.population.filter(d => d.represented && d.year === year && d.total > 0)
           census = sort(census, d => d.free || d.total).reverse()
+          const halfway = census.length / 2
+          console.log(year, halfway)
           let start = 0
           return (
             <g transform={`translate(0, ${yi * rowHeight})`}>
               <Label x="50" y={yearHeight - 4}>{year}</Label>
-              {census.filter(d => d.represented).map(({ free }, xi) => {
+              {census.map(({ free }, xi) => {
                 const w = xScale(free)
                 const x = start
                 start = x + w
                 const fill = representedColors[xi % representedColors.length]
-                return (<rect y="0" height={yearHeight} x={x + 60} width={w} fill={`var(--${fill})`} />)
+                let half = false
+                if (xi === halfway) {
+                  half = x
+                } else if (xi + 0.5 === halfway) {
+                  half = x + w/2
+                }
+                return (
+                  <g>
+                    <rect y="0" height={yearHeight} x={x + 60} width={w} fill={`var(--${fill})`} />
+                    {half && <rect y="0" height={yearHeight} x={half + 60} width={2} fill={`var(--color-fg)`} />}
+                  </g>
+                )
               })}
+              <rect y="0" height={yearHeight}
+                x={565}
+                width={xScale(enslavedSum)}
+                fill={`var(--${colors.enslaved})`}
+              />
+              <rect y="0" height={yearHeight}
+                x={565 + xScale(enslavedSum)}
+                width={xScale(unrepFreeSum)}
+                fill={`var(--${colors.unrepresented})`}
+              />
             </g>
           )
         })}
