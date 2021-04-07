@@ -1,4 +1,49 @@
 ---
-title: Appritioning the Senate
+title: Apportioning the Senate
 date:  2021-04-01
 ---
+
+# Apportioning the Senate
+
+<Section hasAsides>
+
+As someone who is of a disposition towards curiousity about how things work and had to study US civics in school, the mechanisms for distributing political power in the United States are something that stuck with me from civics lessons.
+
+And then, as someone who likes to explain how things work, I've found myself explaining the [Electoral College](https://en.wikipedia.org/wiki/United_States_Electoral_College) to no small number of people who justifiably express disbelief that something as important as who becomes the president of the United States is determined by something so convoluted.
+
+The disbelief continues as I explain that a voter in Wyoming _structurally_ has about 3.6 times the electoral college representaton as someone in California, and then into shock as I explain that those same people in Wyoming have _66 times_ the representation than a Californian in the US Senate, and this is by design.
+
+<Aside>
+
+The `3.6` and `66` numbers come from the population totals from which apportionment happens, in this case the 2010 Census; they do not represent the actual number of people who actually vote in each election.
+
+</Aside>
+
+I know from experience that it's one thing to look at a few numbers and think _yeah, something isn't exactly fair here_ and another to actually illustrate the problem. As I started thinking about it, I also wanted to ask the question _has it always been this bad?_
+
+I went to [Wikipedia](https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_historical_population), copied some historical population data <Highlight marker="redBold">[to files][files]</Highlight>, and set about plotting the per-state population on a per-census basis. A few problems are immediately obvious:
+
+[files]:
+
+- The census collects population data for areas which do not have representation in the Senate, because they are not states.
+- Territories can become states in off-census years, but immediately gain representation.
+- Enslaved people were counted as partial popluation for the sake of apportionment.
+- Population growth is uneven across states over time; any representation of distribution of power needs to illustrate this on a per-census period basis.
+
+I like to start a visualization project with some basic graphs to help get a better feel for the shape of the data.
+
+On the left, each area's census result as a percentage of the largest state census result in historical record (California, 2010). On the right, each area's census result sized proportionally to other results for that census.
+
+<Chart1 data={props.byStateDecade} />
+
+One thing immediately apparent to me is that I cannot be an impartial renderer of this data. **Slavery is an evil institution**, full stop. Attempting to illustrate the urban/rural bias of the Senate by using the [3/5ths Compromise]() method would be, quite simply, immoral. And so I am forced to think the question _how has the Senate's rural-state bias changed over time?_ is perhaps not quite enough.
+
+</Section>
+<Section hasAsides>
+
+<Chart2 data={props.byStateDecade} />
+
+</Section>
+<Footer>
+
+</Footer>

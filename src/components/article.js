@@ -8,9 +8,10 @@ const Article = styled.article({
     lineHeight: type.leading.normal,
     fontSize: type.md,
     rowGap: spacing.lg1,
-}, ({ width }) => {
+}, ({ width, styles = {} }) => {
     return {
         ...column[width || 'wide'],
+        ...styles,
     }
 })
 Article.propTypes = {

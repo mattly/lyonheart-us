@@ -89,6 +89,12 @@ export const asideContainer = {
   },
 }
 
+export const escapeAsideContainer = {
+  [breakingWide]: {
+    gridColumn: `1 / -1`,
+  }
+}
+
 export const underlinedLink = {
   color: 'inherit',
   textDecoration: 'underline',

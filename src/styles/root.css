@@ -21,7 +21,13 @@
   --color-fg-title-shadow: var(--gry-9);
 
   --color-local-link: var(--color-link);
-  --color-local-bg: var(--color-bg)
+  --color-local-bg: var(--color-bg);
+
+  --color-fg-red: var(--red-7);
+  --color-fg-violet: var(--vlt-7);
+  --color-fg-blue: var(--blu-7);
+  --color-fg-green: var(--grn-7);
+  --color-fg-yellow: var(--yel-7);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -44,5 +50,11 @@
     --highlight-bg-green: var(--grn-9);
 
     --color-bg-blue: var(--blu-9);
+
+    --color-fg-red: var(--red-4);
+    --color-fg-violet: var(--vlt-4);
+    --color-fg-blue: var(--blu-4);
+    --color-fg-green: var(--grn-4);
+    --color-fg-yel: var(--yel-4);
   }
 }
